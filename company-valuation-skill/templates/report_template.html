@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company_name }} ({{ ticker }}) &mdash; Valuation Report</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2b6cb0;
+            --accent: #3182ce;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --bg: #f7fafc;
+            --card: #ffffff;
+            --text: #2d3748;
+            --muted: #718096;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+        .header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 48px 40px; border-radius: 12px; margin-bottom: 32px; }
+        .header h1 { font-size: 2rem; margin-bottom: 8px; }
+        .header .subtitle { opacity: 0.85; font-size: 1.1rem; }
+        .header .meta { margin-top: 16px; font-size: 0.9rem; opacity: 0.7; }
+        .section { background: var(--card); border-radius: 10px; padding: 32px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .section h2 { color: var(--primary); font-size: 1.4rem; margin-bottom: 20px; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+        .section h3 { color: var(--secondary); font-size: 1.1rem; margin: 20px 0 12px; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+        th { background: var(--primary); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+        td { padding: 8px 14px; border-bottom: 1px solid var(--border); }
+        tr:nth-child(even) { background: #f8fafc; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0; }
+        .kpi { background: #edf2f7; border-radius: 8px; padding: 16px; text-align: center; }
+        .kpi .value { font-size: 1.6rem; font-weight: 700; color: var(--primary); }
+        .kpi .label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .verdict-box { padding: 24px; border-radius: 10px; text-align: center; margin: 20px 0; }
+        .verdict-box.buy { background: #f0fff4; border: 2px solid var(--success); }
+        .verdict-box.hold { background: #fefcbf; border: 2px solid var(--warning); }
+        .verdict-box.sell { background: #fff5f5; border: 2px solid var(--danger); }
+        .verdict-box .verdict-label { font-size: 2rem; font-weight: 800; }
+        .verdict-box.buy .verdict-label { color: var(--success); }
+        .verdict-box.hold .verdict-label { color: var(--warning); }
+        .verdict-box.sell .verdict-label { color: var(--danger); }
+        .verdict-box .verdict-detail { margin-top: 8px; color: var(--muted); }
+        .chart-container { margin: 20px 0; text-align: center; }
+        .chart-container img { max-width: 100%; height: auto; border-radius: 8px; }
+        .warning-box { background: #fffbeb; border-left: 4px solid var(--warning); padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+        .sensitivity-table { overflow-x: auto; }
+        .sensitivity-table table { font-size: 0.85rem; }
+        .sensitivity-table td.highlight { background: #bee3f8; font-weight: 700; }
+        .football-field { margin: 20px 0; }
+        .bar-row { display: flex; align-items: center; margin: 10px 0; }
+        .bar-label { width: 180px; font-weight: 600; font-size: 0.9rem; }
+        .bar-track { flex: 1; background: #edf2f7; height: 32px; border-radius: 6px; position: relative; }
+        .bar-fill { position: absolute; height: 100%; border-radius: 6px; opacity: 0.8; }
+        .bar-fill.dcf { background: var(--accent); }
+        .bar-fill.cca { background: var(--success); }
+        .bar-fill.pt { background: var(--warning); }
+        .bar-value { position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.75rem; font-weight: 600; color: white; padding: 0 8px; }
+        .current-price-line { position: absolute; height: 100%; width: 2px; background: var(--danger); top: 0; z-index: 10; }
+        .footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem; }
+        @media print {
+            .container { padding: 0; }
+            .section { break-inside: avoid; box-shadow: none; border: 1px solid var(--border); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>{{ company_name }} ({{ ticker }})</h1>
+        <div class="subtitle">Company Valuation Report</div>
+        <div class="meta">
+            Analysis Date: {{ analysis_date }} | Sector: {{ sector }} | Report Format: {{ report_format }}
+        </div>
+    </div>
+
+    <!-- 1. EXECUTIVE SUMMARY -->
+    <div class="section" id="executive-summary">
+        <h2>1. Executive Summary</h2>
+        <div class="kpi-grid">
+            <div class="kpi">
+                <div class="value">${{ current_price }}</div>
+                <div class="label">Current Price</div>
+            </div>
+            <div class="kpi">
+                <div class="value">${{ fair_value_mid }}</div>
+                <div class="label">Fair Value (Mid)</div>
+            </div>
+            <div class="kpi">
+                <div class="value">${{ fair_value_low }} &ndash; ${{ fair_value_high }}</div>
+                <div class="label">Value Range</div>
+            </div>
+            <div class="kpi">
+                <div class="value">{{ implied_upside }}%</div>
+                <div class="label">Implied Upside</div>
+            </div>
+        </div>
+        <div class="verdict-box {{ verdict_class }}">
+            <div class="verdict-label">{{ recommendation }}</div>
+            <div class="verdict-detail">{{ verdict }} | Confidence: {{ confidence }}</div>
+        </div>
+        <p>{{ executive_summary_text }}</p>
+    </div>
+
+    <!-- 2. COMPANY OVERVIEW -->
+    <div class="section" id="company-overview">
+        <h2>2. Company Overview</h2>
+        {{ company_overview_html }}
+    </div>
+
+    <!-- 3. DATA QUALITY SUMMARY -->
+    <div class="section" id="data-quality">
+        <h2>3. Data Quality Summary</h2>
+        {{ data_quality_html }}
+    </div>
+
+    <!-- 4. METHODOLOGY -->
+    <div class="section" id="methodology">
+        <h2>4. Methodology</h2>
+        <h3>4.1 Discounted Cash Flow (DCF)</h3>
+        <p>Projects future free cash flows over {{ projection_years }} years, discounted at WACC ({{ wacc }}%). Two terminal value methods are computed: Gordon Growth Model (perpetuity growth at {{ terminal_growth }}%) and Exit Multiple ({{ exit_multiple }}x EV/EBITDA). The blended average of both approaches is used as the primary DCF estimate.</p>
+        <h3>4.2 Comparable Company Analysis (CCA)</h3>
+        <p>Applies median valuation multiples (EV/EBITDA, EV/Revenue, P/E, P/B) from {{ peer_count }} peer companies to the target's latest financial metrics to derive implied equity value ranges.</p>
+        <h3>4.3 Precedent Transactions</h3>
+        <p>Uses multiples from {{ transaction_count }} historical M&A transactions in the {{ sector }} sector. Transaction multiples inherently include a control premium (avg. {{ avg_premium }}%), so they typically produce higher valuations than public market comparable analysis.</p>
+    </div>
+
+    <!-- 5. FINANCIAL RATIO ANALYSIS -->
+    <div class="section" id="ratios">
+        <h2>5. Financial Ratio Analysis</h2>
+        {{ ratio_tables_html }}
+        <div class="chart-container">{{ ratio_charts }}</div>
+    </div>
+
+    <!-- 6. DCF VALUATION -->
+    <div class="section" id="dcf">
+        <h2>6. DCF Valuation</h2>
+        <h3>6.1 WACC Calculation</h3>
+        {{ wacc_table_html }}
+        <h3>6.2 Projected Free Cash Flows</h3>
+        {{ dcf_projections_table_html }}
+        <h3>6.3 Valuation Result</h3>
+        {{ dcf_result_html }}
+        <h3>6.4 Sensitivity Analysis</h3>
+        <p>Shows how equity value per share changes with WACC and terminal growth rate assumptions:</p>
+        <div class="sensitivity-table">{{ sensitivity_table_html }}</div>
+        <div class="chart-container">{{ sensitivity_chart }}</div>
+        {% for w in dcf_warnings %}
+        <div class="warning-box">⚠ {{ w }}</div>
+        {% endfor %}
+    </div>
+
+    <!-- 7. COMPARABLE COMPANY ANALYSIS -->
+    <div class="section" id="cca">
+        <h2>7. Comparable Company Analysis</h2>
+        <h3>7.1 Peer Multiples</h3>
+        {{ peer_multiples_table_html }}
+        <h3>7.2 Implied Valuation</h3>
+        {{ cca_implied_html }}
+        <div class="chart-container">{{ cca_chart }}</div>
+    </div>
+
+    <!-- 8. PRECEDENT TRANSACTIONS -->
+    <div class="section" id="precedent">
+        <h2>8. Precedent Transactions</h2>
+        {{ precedent_table_html }}
+        <h3>8.1 Implied Valuation from Transactions</h3>
+        {{ precedent_implied_html }}
+    </div>
+
+    <!-- 9. VALUATION SUMMARY -->
+    <div class="section" id="valuation-summary">
+        <h2>9. Valuation Summary</h2>
+        <p>The "football field" chart below compares the valuation range from each method. The recommended fair value range is the overlap region across methods.</p>
+        <div class="chart-container">{{ football_field_chart }}</div>
+        {{ valuation_summary_table_html }}
+    </div>
+
+    <!-- 10. RECOMMENDATIONS -->
+    <div class="section" id="recommendations">
+        <h2>10. Business Interpretation & Recommendations</h2>
+        {{ recommendations_html }}
+    </div>
+
+    <!-- 11. ASSUMPTIONS & LIMITATIONS -->
+    <div class="section" id="assumptions">
+        <h2>11. Assumptions & Limitations</h2>
+        {{ assumptions_html }}
+    </div>
+
+    <!-- 12. DATA APPENDIX -->
+    <div class="section" id="appendix">
+        <h2>12. Data Appendix</h2>
+        {{ appendix_html }}
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>Generated by Company Valuation Analytics Skill | {{ analysis_date }}</p>
+        <p>This report is for educational purposes only and does not constitute financial advice.</p>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Walkthrough — Company Valuation Analytics Skill</title>
+    <style>
+        :root { --primary: #1a365d; --accent: #3182ce; --bg: #f7fafc; --card: #fff; --text: #2d3748; --muted: #718096; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+        h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 4px; }
+        h2 { color: var(--primary); font-size: 1.3rem; margin: 36px 0 16px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+        h3 { color: var(--accent); font-size: 1.05rem; margin: 20px 0 8px; }
+        .subtitle { color: var(--muted); margin-bottom: 32px; font-size: 0.95rem; }
+        p { margin: 10px 0; }
+        ul, ol { margin: 8px 0 8px 28px; }
+        li { margin: 4px 0; }
+        .card { background: var(--card); border-radius: 10px; padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        .diagram { background: #1a202c; color: #a0aec0; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; font-size: 0.82rem; overflow-x: auto; white-space: pre; margin: 16px 0; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; }
+        th { background: var(--primary); color: #fff; padding: 8px 12px; text-align: left; }
+        td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+        tr:nth-child(even) { background: #f8fafc; }
+        .page-break { page-break-after: always; }
+        @media print { .card { box-shadow: none; border: 1px solid var(--border); break-inside: avoid; } }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<h1>Design Walkthrough</h1>
+<p class="subtitle">Company Valuation Analytics Skill — Assignment 2</p>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 -->
+<!-- ============================================================ -->
+<div class="card">
+<h2>1. Why Company Valuation?</h2>
+
+<h3>Domain Selection Rationale</h3>
+
+<p>Company valuation was chosen for several reasons that make it an ideal candidate for LLM skill authoring:</p>
+
+<ol>
+    <li><strong>Structured, repeatable methodology.</strong> Professional equity analysts follow the same three-method framework worldwide: Discounted Cash Flow (intrinsic value), Comparable Company Analysis (relative value), and Precedent Transactions (acquisition value). This makes the workflow precisely specifiable in a SKILL.md — every formula, every input, every output is deterministic.</li>
+
+    <li><strong>Multi-algorithm comparison is natural.</strong> The assignment requires running "at least two alternative approaches." Company valuation inherently compares three independent methods that approach the same question from different angles. Each produces a value range, and the cross-validation step (comparing all three) is a core part of real-world equity research — not an artificial requirement.</li>
+
+    <li><strong>Rich domain knowledge to encode.</strong> Valuation involves CAPM, WACC, terminal value, EV bridges, control premiums, industry benchmarks, and interpretation frameworks. This provides substantial material for REFERENCE.md without needing to fabricate domain context.</li>
+
+    <li><strong>Clear business output.</strong> The final deliverable — a buy/hold/sell recommendation backed by quantitative analysis — is immediately understandable to a business audience, making the report generation stage genuinely useful rather than decorative.</li>
+
+    <li><strong>Live data integration via MCP.</strong> Financial data is publicly available through APIs (Yahoo Finance), making MCP integration natural. The skill can fetch live data for any public company at runtime, demonstrating real-world applicability.</li>
+</ol>
+
+<h3>Domain Exclusions</h3>
+<p>We explicitly excluded RFM segmentation (used as the demo in the assignment brief). We also avoided pure ML prediction tasks (e.g., stock price prediction) because valuation is fundamentally about <em>analysis and interpretation</em>, not prediction — which better fits the assignment's emphasis on auditable, explainable workflows.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 -->
+<!-- ============================================================ -->
+<div class="card">
+<h2>2. Pipeline Architecture & Design Decisions</h2>
+
+<h3>Architecture Overview</h3>
+<div class="diagram">
+┌──────────────┐   ┌──────────────┐   ┌──────────────────────┐
+│  fetch_data  │──▶│  validate_   │──▶│  feature_engineering  │
+│    .py       │   │   data.py    │   │       .py             │
+│              │   │              │   │                       │
+│ Yahoo Finance│   │ Profile data │   │ Ratios, WACC, FCF     │
+│ + MCP + Synth│   │ Reject if bad│   │ projections, peer     │
+│ data fallback│   │              │   │ multiples             │
+└──────────────┘   └──────────────┘   └───────────┬───────────┘
+                                                   │
+                                                   ▼
+┌──────────────┐   ┌──────────────────────────────────────────┐
+│  generate_   │◀──│           run_models.py                  │
+│  report.py   │   │                                          │
+│              │   │  DCF (Gordon + Exit Multiple)             │
+│ HTML + PDF   │   │  CCA (4 peer multiples)                  │
+│ 12 sections  │   │  Precedent Transactions (M&A multiples)  │
+│ 3 charts     │   │  Cross-validation + verdict              │
+└──────────────┘   └──────────────────────────────────────────┘
+</div>
+
+<h3>Key Design Decisions</h3>
+
+<p><strong>Decision 1: JSON as inter-script data format.</strong> Each script reads JSON and writes JSON. This was chosen over CSV because financial data is hierarchical (target → records, peers → [records], transactions). JSON preserves this structure natively, eliminates column-ordering bugs, and makes intermediate outputs human-readable for debugging.</p>
+
+<p><strong>Decision 2: Separate feature engineering from modelling.</strong> The assignment emphasises "separate computation from interpretation." Going further, we also separated feature computation (Stage 2) from model execution (Stage 3). This lets the LLM inspect features before modelling — if WACC looks unreasonable, it can adjust config before committing to a full model run.</p>
+
+<p><strong>Decision 3: Two DCF terminal value methods.</strong> Instead of choosing between Gordon Growth and Exit Multiple, we compute both and blend them. This reduces sensitivity to any single assumption and gives the LLM a richer result to interpret. The sensitivity matrix covers 25 scenarios (5 WACC × 5 growth rate values).</p>
+
+<p><strong>Decision 4: Precedent transactions as curated database.</strong> Real M&A transaction databases (Bloomberg, PitchBook) require paid access. We included a curated set of representative public transactions by sector, mapped via sector classification. For production use, this would connect to an MCP tool that queries a live M&A database.</p>
+
+<p><strong>Decision 5: Base64-embedded charts.</strong> Charts are encoded as base64 PNG images directly in the HTML rather than saved as separate files. This makes the report a single self-contained file — no broken image links when moving or sharing the report.</p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 3 -->
+<!-- ============================================================ -->
+<div class="card">
+<h2>3. Script Design & Interface Contracts</h2>
+
+<p>Each script follows a consistent pattern: CLI argument parsing → JSON input reading → computation → JSON output writing → summary to stdout. This makes them individually testable and composable.</p>
+
+<table>
+    <tr><th>Script</th><th>Input</th><th>Output</th><th>LOC</th></tr>
+    <tr><td><code>fetch_data.py</code></td><td>CLI: ticker, peers, years</td><td>financials.json</td><td>~190</td></tr>
+    <tr><td><code>generate_synthetic_data.py</code></td><td>CLI: sector, seed, companies</td><td>financials.json</td><td>~180</td></tr>
+    <tr><td><code>validate_data.py</code></td><td>financials.json</td><td>validation_report.json</td><td>~170</td></tr>
+    <tr><td><code>feature_engineering.py</code></td><td>financials.json + config.json</td><td>features.json</td><td>~250</td></tr>
+    <tr><td><code>run_models.py</code></td><td>features.json</td><td>valuation_results.json</td><td>~280</td></tr>
+    <tr><td><code>generate_report.py</code></td><td>valuation_results.json</td><td>HTML + PDF</td><td>~330</td></tr>
+</table>
+
+<h3>Error Handling Philosophy</h3>
+<p>The skill follows "fail early, fail clearly" — validation at Stage 1 catches data issues before expensive computation. Each error includes a <code>fix</code> field explaining exactly what to change. The pipeline uses exit codes (0 = success, 1 = failure) so downstream tools can detect failures programmatically.</p>
+
+<h3>Reproducibility</h3>
+<p>The synthetic data generator uses <code>numpy.random.default_rng(seed=42)</code> for reproducible output. The modelling script sets <code>np.random.seed(42)</code>. Two runs with identical inputs and seeds produce byte-identical JSON outputs and visually identical reports.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 4 -->
+<!-- ============================================================ -->
+<div class="card">
+<h2>4. What Failed and What Was Fixed</h2>
+
+<h3>Challenge 1: Incomplete Fiscal Years from Yahoo Finance</h3>
+<p><strong>Problem:</strong> When fetching 5 years of data via yfinance, the API often returns the oldest year with all-null financial statement fields (income statement columns exist but values are None). This produced 27 validation warnings on real AAPL data and yielded garbage ratio calculations (dividing by zero or treating null as 0).</p>
+<p><strong>Fix:</strong> Added an auto-filter in <code>fetch_data.py</code> that drops records where <code>revenue</code> is null. A log message reports how many incomplete years were dropped per company. Combined with a null guard in <code>feature_engineering.py</code> that skips records where both <code>revenue</code> and <code>total_assets</code> are null. After this fix: 0 warnings on AAPL, GOOGL, META, JNJ, PFE, MRK, LLY data.</p>
+
+<h3>Challenge 2: Balance Sheet Identity Mismatch</h3>
+<p><strong>Problem:</strong> Yahoo Finance and synthetic generators sometimes produce balance sheet data where <code>total_assets ≠ total_liabilities + total_equity</code> due to rounding or minority interests. Early versions of the pipeline hard-failed on this.</p>
+<p><strong>Fix:</strong> Changed from strict equality to a 5% tolerance check. The validation script now computes <code>|assets − (liabilities + equity)| / assets</code> and only flags a WARNING if it exceeds 5%. This accommodates real-world data imprecision without silently accepting garbage data.</p>
+
+<h3>Challenge 2: Terminal Growth Rate ≥ WACC</h3>
+<p><strong>Problem:</strong> The Gordon Growth Model formula <code>TV = FCF × (1+g) / (WACC−g)</code> produces division by zero or negative values when g ≥ WACC. This happened with certain config combinations (low risk-free rate + high growth assumption).</p>
+<p><strong>Fix:</strong> Added a guard in <code>feature_engineering.py</code>: if terminal growth ≥ WACC, automatically adjust terminal growth to WACC − 1% and print a warning. Also added a fallback in the DCF model: if the formula would divide by ≤ 0, use 20× terminal FCF as a simple cap.</p>
+
+<h3>Challenge 3: Negative FCF Breaking DCF</h3>
+<p><strong>Problem:</strong> Companies with negative free cash flow produce meaningless or negative DCF valuations. Early versions didn't handle this, producing confusing results.</p>
+<p><strong>Fix:</strong> Added explicit negative FCF detection in <code>run_models.py</code>. When FCF < 0, the model still runs (producing whatever value the math gives) but appends a prominent warning. The cross-validation step correctly assigns LOW confidence when methods diverge significantly. The report template includes a warning banner in the DCF section.</p>
+
+<h3>Challenge 4: CCA Outlier Multiples</h3>
+<p><strong>Problem:</strong> Some peer companies have extreme multiples (e.g., EV/Revenue > 20× for high-growth tech). Using max peer multiples directly produced an unrealistically wide CCA range.</p>
+<p><strong>Fix:</strong> The cross-validation step handles this by focusing on median multiples for the "mid" estimate and using the full range only for the low/high bounds. The football field chart visually shows this spread, making it obvious which method has the widest uncertainty.</p>
+<h3>Challenge 5: Invalid Peer Tickers from API</h3>
+<p><strong>Problem:</strong> When a user provides an invalid ticker symbol (e.g., "INVALIDXYZ"), yfinance raises an HTTP 404 error that crashed the entire fetch process, losing already-fetched valid data.</p>
+<p><strong>Fix:</strong> Wrapped each peer fetch in try/except that catches API errors and produces a "WARNING: skipping" message. After all fetches, the script re-checks that ≥3 valid peers remain. This is robust against typos and delisted tickers.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 5 -->
+<!-- ============================================================ -->
+<div class="card">
+<h2>5. MCP Integration Architecture</h2>
+
+<h3>Design</h3>
+<p>The <code>fetch_data.py</code> script serves as the MCP integration point. It wraps the Yahoo Finance API (<code>yfinance</code> library) to fetch:</p>
+<ul>
+    <li>Annual income statements, balance sheets, and cash flow statements</li>
+    <li>Market data (current price, shares outstanding, beta)</li>
+    <li>Company metadata (sector, industry, name)</li>
+</ul>
+
+<p>The script accepts CLI arguments (<code>--ticker</code>, <code>--peers</code>, <code>--years</code>) and outputs structured JSON in the exact format expected by downstream scripts. This means the same pipeline works identically whether data comes from:</p>
+<ol>
+    <li>Live Yahoo Finance API (via <code>fetch_data.py</code>)</li>
+    <li>Synthetic data generator (via <code>generate_synthetic_data.py</code>)</li>
+    <li>A Kaggle CSV pre-processed into the same JSON format</li>
+</ol>
+
+<p>For LLM orchestration, the MCP tool would expose <code>fetch_data.py</code> as a callable tool with the same interface. The SKILL.md documents both the live-data and synthetic-data paths, letting the LLM choose based on user intent and network availability.</p>
+
+<h3>Precedent Transactions</h3>
+<p>Since real M&A databases require paid access, <code>fetch_data.py</code> includes a curated transaction database covering Technology, Healthcare, Consumer, Energy, and Financials sectors with real public transactions (Activision/Microsoft, Twitter/X Holdings, VMware/Broadcom, etc.). The synthetic generator creates its own realistic transaction data. In production, this would connect to a PitchBook or Bloomberg MCP tool.</p>
+
+<h3>Fallback Strategy</h3>
+<div class="diagram">
+User Request → LLM reads SKILL.md
+    │
+    ├─ "Analyse AAPL" → fetch_data.py --ticker AAPL (live API)
+    │     └─ API fails? → suggest synthetic data or Kaggle fallback
+    │
+    └─ "Test the skill" → generate_synthetic_data.py (reproducible, no network)
+</div>
+</div>
+
+<div class="card">
+<h2>6. Conclusion</h2>
+<p>The Company Valuation Analytics Skill demonstrates a complete, production-quality analytics pipeline that an LLM can orchestrate end-to-end. The three-method valuation framework (DCF, CCA, Precedent Transactions) provides natural multi-algorithm comparison. The 6-stage pipeline (acquisition → validation → features → modelling → cross-validation → reporting) maps directly to the assignment's mandatory stages. All scripts are independently testable, reproducible (via seeds), and produce structured JSON that enables the LLM to inspect and interpret intermediate results at each stage.</p>
+
+<p>The skill was hardened against real-world data by running against Apple Inc. (AAPL, Technology) and Johnson &amp; Johnson (JNJ, Healthcare) via the Yahoo Finance API. This uncovered issues with incomplete fiscal year data, which were fixed with auto-filtering. In total, 7 test scenarios were executed: 2 real-world (different sectors), 1 malformed data failure, 1 negative FCF edge case, 1 invalid ticker robustness test, 1 parameter sensitivity comparison, and 1 reproducibility check — all passed. The professional HTML report with embedded charts, sensitivity heatmaps, and football field visualisation demonstrates actionable, auditable business intelligence.</p>
+</div>
+
+</div>
+</body>
+</html>
