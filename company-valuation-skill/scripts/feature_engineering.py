@@ -471,6 +471,7 @@ def main():
             "ticker": target.get("ticker"),
             "company_name": target.get("company_name"),
             "sector": target.get("sector"),
+            "currency": target.get("currency", "USD"),
             "features": target_features,
             "latest": latest,
         },

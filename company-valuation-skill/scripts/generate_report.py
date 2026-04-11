@@ -88,7 +88,7 @@ def make_ratio_charts(features: list) -> str:
     return fig_to_base64(fig)
 
 
-def make_sensitivity_chart(sensitivity: dict) -> str:
+def make_sensitivity_chart(sensitivity: dict, cs: str = "$") -> str:
     """Create heatmap of DCF sensitivity to WACC and terminal growth rate."""
     matrix = sensitivity.get("matrix", [])
     wacc_labels = sensitivity.get("wacc_range", [])
@@ -115,14 +115,14 @@ def make_sensitivity_chart(sensitivity: dict) -> str:
     ax.set_yticklabels([f"{w*100:.1f}%" for w in wacc_labels])
     ax.set_xlabel("Terminal Growth Rate")
     ax.set_ylabel("WACC")
-    ax.set_title("DCF Sensitivity: Implied Price per Share ($)")
+    ax.set_title(f"DCF Sensitivity: Implied Price per Share ({cs})")
 
     # Add text annotations
     for i in range(len(wacc_labels)):
         for j in range(len(growth_labels)):
             val = arr[i, j]
             if val != 0:
-                txt = f"${val:,.0f}"
+                txt = f"{cs}{val:,.0f}"
                 color = "white" if abs(val - arr.mean()) > arr.std() else "black"
                 ax.text(j, i, txt, ha="center", va="center", fontsize=7, color=color)
 
@@ -131,7 +131,7 @@ def make_sensitivity_chart(sensitivity: dict) -> str:
     return fig_to_base64(fig)
 
 
-def make_football_field_chart(cross_validation: dict, current_price: float) -> str:
+def make_football_field_chart(cross_validation: dict, current_price: float, cs: str = "$") -> str:
     """Create a football field chart comparing valuation ranges from all methods."""
     methods = cross_validation.get("method_summary", [])
     if not methods:
@@ -152,10 +152,10 @@ def make_football_field_chart(cross_validation: dict, current_price: float) -> s
         color = colors.get(m["method"], "#718096")
         ax.barh(i, high - low, left=low, height=0.5, color=color, alpha=0.7, label=m["method"])
         ax.plot(mid, i, "D", color="white", markersize=8, markeredgecolor=color, markeredgewidth=2)
-        ax.text(high + (max(valid_vals) * 0.01), i, f"${mid:,.0f}", va="center", fontsize=9, fontweight="bold")
+        ax.text(high + (max(valid_vals) * 0.01), i, f"{cs}{mid:,.0f}", va="center", fontsize=9, fontweight="bold")
 
     # Current price line
-    ax.axvline(x=current_price, color="#e53e3e", linestyle="--", linewidth=2, label=f"Current: ${current_price:,.0f}")
+    ax.axvline(x=current_price, color="#e53e3e", linestyle="--", linewidth=2, label=f"Current: {cs}{current_price:,.0f}")
 
     ax.set_yticks(y_pos)
     ax.set_yticklabels([m["method"] for m in methods])
@@ -227,6 +227,16 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
     price = target.get("current_price", 0)
     shares = target.get("shares_outstanding", 0)
 
+    # Currency symbol from data (Yahoo Finance provides currency code)
+    currency_code = target.get("currency", "USD")
+    currency_symbols = {
+        "USD": "$", "EUR": "€", "GBP": "£", "JPY": "¥", "CNY": "¥",
+        "INR": "₹", "KRW": "₩", "CHF": "CHF ", "CAD": "C$", "AUD": "A$",
+        "HKD": "HK$", "SGD": "S$", "SEK": "kr", "NOK": "kr", "DKK": "kr",
+        "BRL": "R$", "MXN": "MX$", "ZAR": "R", "TWD": "NT$", "THB": "฿",
+    }
+    cs = currency_symbols.get(currency_code, f"{currency_code} ")
+
     # Load template
     template_path = os.path.join(os.path.dirname(__file__), "..", "templates", "report_template.html")
     if not os.path.exists(template_path):
@@ -236,8 +246,8 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
 
     # Generate charts
     ratio_charts = make_ratio_charts(features) if features else ""
-    sensitivity_chart = make_sensitivity_chart(dcf.get("sensitivity", {}))
-    football_chart = make_football_field_chart(cv, price)
+    sensitivity_chart = make_sensitivity_chart(dcf.get("sensitivity", {}), cs)
+    football_chart = make_football_field_chart(cv, price, cs)
 
     # Verdict class for CSS
     rec = cv.get("recommendation", "HOLD")
@@ -251,7 +261,7 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
     # Executive summary text
     exec_text = (
         f"Based on a three-method valuation analysis (DCF, Comparable Company, Precedent Transactions), "
-        f"{company} appears to be {cv.get('verdict', 'N/A').lower()} at the current price of ${price:,.2f}. "
+        f"{company} appears to be {cv.get('verdict', 'N/A').lower()} at the current price of {cs}{price:,.2f}. "
         f"Our analysis yields a fair value range of ${cv.get('overall_range', {}).get('low', 0):,.2f} &ndash; "
         f"${cv.get('overall_range', {}).get('high', 0):,.2f} per share, with a midpoint of "
         f"${cv.get('overall_range', {}).get('mid', 0):,.2f}. {cv.get('confidence_note', '')}"
@@ -261,14 +271,14 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
     latest = features[-1] if features else {}
     overview_rows = [
         ("Ticker", ticker), ("Sector", sector),
-        ("Revenue (Latest)", fmt_num(latest.get("revenue"), "$")),
-        ("Net Income", fmt_num(latest.get("net_income"), "$")),
-        ("EBITDA", fmt_num(latest.get("ebitda"), "$")),
-        ("Free Cash Flow", fmt_num(latest.get("fcff"), "$")),
-        ("Market Cap", fmt_num(latest.get("market_cap"), "$")),
+        ("Revenue (Latest)", fmt_num(latest.get("revenue"), cs)),
+        ("Net Income", fmt_num(latest.get("net_income"), cs)),
+        ("EBITDA", fmt_num(latest.get("ebitda"), cs)),
+        ("Free Cash Flow", fmt_num(latest.get("fcff"), cs)),
+        ("Market Cap", fmt_num(latest.get("market_cap"), cs)),
         ("Shares Outstanding", fmt_num(shares)),
-        ("Stock Price", f"${price:,.2f}"),
-        ("EPS", fmt_num(latest.get("eps"), "$")),
+        ("Stock Price", f"{cs}{price:,.2f}"),
+        ("EPS", fmt_num(latest.get("eps"), cs)),
     ]
     company_overview = build_table(["Metric", "Value"], overview_rows)
 
@@ -318,16 +328,16 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
     proj = dcf.get("projections", [])
     proj_headers = ["Year", "Growth Rate", "Projected FCF", "Discount Factor", "Present Value"]
     proj_rows = [[
-        p["year"], fmt_pct(p["growth_rate"]), fmt_num(p["projected_fcf"], "$"),
-        fmt_num(p["discount_factor"]), fmt_num(p["present_value"], "$"),
+        p["year"], fmt_pct(p["growth_rate"]), fmt_num(p["projected_fcf"], cs),
+        fmt_num(p["discount_factor"]), fmt_num(p["present_value"], cs),
     ] for p in proj]
     proj_table = build_table(proj_headers, proj_rows)
 
     # DCF result
     dcf_res_rows = [
-        ("Sum of PV(FCFs)", fmt_num(dcf.get("blended", {}).get("enterprise_value", 0) - dcf.get("gordon_growth", {}).get("enterprise_value", 0) + dcf.get("blended", {}).get("enterprise_value", 0), "$")),
-        ("Gordon Growth - Price/Share", fmt_num(dcf.get("gordon_growth", {}).get("price_per_share"), "$")),
-        ("Exit Multiple - Price/Share", fmt_num(dcf.get("exit_multiple", {}).get("price_per_share"), "$")),
+        ("Sum of PV(FCFs)", fmt_num(dcf.get("blended", {}).get("enterprise_value", 0) - dcf.get("gordon_growth", {}).get("enterprise_value", 0) + dcf.get("blended", {}).get("enterprise_value", 0), cs)),
+        ("Gordon Growth - Price/Share", fmt_num(dcf.get("gordon_growth", {}).get("price_per_share"), cs)),
+        ("Exit Multiple - Price/Share", fmt_num(dcf.get("exit_multiple", {}).get("price_per_share"), cs)),
         ("Blended - Price/Share", f"<strong>{fmt_num(dcf.get('blended', {}).get('price_per_share'), '$')}</strong>"),
     ]
     dcf_result_table = build_table(["Metric", "Value"], dcf_res_rows)
@@ -353,7 +363,7 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
                 val = row["values"].get(str(g))
                 is_base = is_base_row and abs(g - base_tg) < 0.001
                 cls = ' class="highlight"' if is_base else ''
-                sens_html += f'<td{cls}>{fmt_num(val, "$") if val else "N/A"}</td>'
+                sens_html += f'<td{cls}>{fmt_num(val, cs) if val else "N/A"}</td>'
             sens_html += '</tr>'
         sens_html += '</tbody></table>'
 
@@ -383,7 +393,7 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
             if level in levels:
                 d = levels[level]
                 cca_rows.append([mult_name, level.title(), fmt_num(d.get("multiple")),
-                                fmt_num(d.get("implied_price"), "$")])
+                                fmt_num(d.get("implied_price"), cs)])
     cca_implied_table = build_table(["Multiple", "Level", "Peer Multiple", "Implied Price"], cca_rows)
 
     # Precedent transactions table
@@ -391,7 +401,7 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
     txn_headers = ["Date", "Target", "Acquirer", "Deal Value", "EV/Rev", "EV/EBITDA", "Premium"]
     txn_rows = [[
         t.get("transaction_date", ""), t.get("target_name", ""), t.get("acquirer_name", ""),
-        fmt_num(t.get("deal_value"), "$"), fmt_num(t.get("ev_revenue_multiple")),
+        fmt_num(t.get("deal_value"), cs), fmt_num(t.get("ev_revenue_multiple")),
         fmt_num(t.get("ev_ebitda_multiple")), f"{t.get('premium_paid', 0)}%",
     ] for t in txns]
     txn_table = build_table(txn_headers, txn_rows)
@@ -404,17 +414,17 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
             if level in levels:
                 d = levels[level]
                 pt_rows.append([mult_name, level.title(), fmt_num(d.get("multiple")),
-                               fmt_num(d.get("implied_price"), "$")])
+                               fmt_num(d.get("implied_price"), cs)])
     pt_implied_table = build_table(["Multiple", "Level", "Transaction Multiple", "Implied Price"], pt_rows) if pt_rows else "<p>No implied values from transactions.</p>"
 
     # Valuation summary table
     ms_list = cv.get("method_summary", [])
     vs_headers = ["Method", "Low", "Mid", "High"]
-    vs_rows = [[m["method"], fmt_num(m["low"], "$"), f"<strong>{fmt_num(m['mid'], '$')}</strong>", fmt_num(m["high"], "$")] for m in ms_list]
+    vs_rows = [[m["method"], fmt_num(m["low"], cs), f"<strong>{fmt_num(m['mid'], '$')}</strong>", fmt_num(m["high"], cs)] for m in ms_list]
     vs_rows.append(["<strong>Overall</strong>",
-        fmt_num(cv.get("overall_range", {}).get("low"), "$"),
+        fmt_num(cv.get("overall_range", {}).get("low"), cs),
         f"<strong>{fmt_num(cv.get('overall_range', {}).get('mid'), '$')}</strong>",
-        fmt_num(cv.get("overall_range", {}).get("high"), "$"),
+        fmt_num(cv.get("overall_range", {}).get("high"), cs),
     ])
     val_summary_table = build_table(vs_headers, vs_rows)
 
@@ -460,9 +470,9 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
     # Appendix
     appendix_headers = ["Year", "Revenue", "Net Income", "EBITDA", "FCF", "Total Assets", "Total Equity"]
     appendix_rows = [[
-        f.get("fiscal_year"), fmt_num(f.get("revenue"), "$"), fmt_num(f.get("net_income"), "$"),
-        fmt_num(f.get("ebitda"), "$"), fmt_num(f.get("fcff"), "$"),
-        fmt_num(f.get("total_assets"), "$"), fmt_num(f.get("total_equity"), "$"),
+        f.get("fiscal_year"), fmt_num(f.get("revenue"), cs), fmt_num(f.get("net_income"), cs),
+        fmt_num(f.get("ebitda"), cs), fmt_num(f.get("fcff"), cs),
+        fmt_num(f.get("total_assets"), cs), fmt_num(f.get("total_equity"), cs),
     ] for f in features]
     appendix_table = build_table(appendix_headers, appendix_rows)
 
@@ -471,6 +481,7 @@ def generate_report(results_path: str, output_dir: str, fmt: str = "both"):
         company_name=company,
         ticker=ticker,
         sector=sector,
+        currency_symbol=cs,
         analysis_date=datetime.now().strftime("%Y-%m-%d"),
         report_format=fmt,
         current_price=f"{price:,.2f}",

@@ -115,9 +115,9 @@ def run_dcf_model(features: dict) -> dict:
             "matrix": sensitivity,
         },
         "value_range": {
-            "low": round(min(price_gordon, price_exit), 2),
-            "mid": round(price_blended, 2),
-            "high": round(max(price_gordon, price_exit), 2),
+            "low": round(max(0, min(price_gordon, price_exit)), 2),
+            "mid": round(max(0, price_blended), 2),
+            "high": round(max(0, max(price_gordon, price_exit)), 2),
         },
         "warnings": warnings,
     }
@@ -496,6 +496,7 @@ def main():
             "ticker": ticker,
             "company_name": company,
             "sector": features["target"].get("sector"),
+            "currency": features["target"].get("currency", "USD"),
             "current_price": current_price,
             "shares_outstanding": latest.get("shares_outstanding"),
         },

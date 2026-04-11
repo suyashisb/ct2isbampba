@@ -85,15 +85,15 @@
         <h2>1. Executive Summary</h2>
         <div class="kpi-grid">
             <div class="kpi">
-                <div class="value">${{ current_price }}</div>
+                <div class="value">{{ currency_symbol }}{{ current_price }}</div>
                 <div class="label">Current Price</div>
             </div>
             <div class="kpi">
-                <div class="value">${{ fair_value_mid }}</div>
+                <div class="value">{{ currency_symbol }}{{ fair_value_mid }}</div>
                 <div class="label">Fair Value (Mid)</div>
             </div>
             <div class="kpi">
-                <div class="value">${{ fair_value_low }} &ndash; ${{ fair_value_high }}</div>
+                <div class="value">{{ currency_symbol }}{{ fair_value_low }} &ndash; {{ currency_symbol }}{{ fair_value_high }}</div>
                 <div class="label">Value Range</div>
             </div>
             <div class="kpi">
