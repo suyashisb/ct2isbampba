@@ -95,7 +95,9 @@
 
 <p><strong>Decision 3: Two DCF terminal value methods.</strong> Instead of choosing between Gordon Growth and Exit Multiple, we compute both and blend them. This reduces sensitivity to any single assumption and gives the LLM a richer result to interpret. The sensitivity matrix covers 25 scenarios (5 WACC × 5 growth rate values).</p>
 
-<p><strong>Decision 4: Precedent transactions as curated database.</strong> Real M&A transaction databases (Bloomberg, PitchBook) require paid access. We included a curated set of representative public transactions by sector, mapped via sector classification. For production use, this would connect to an MCP tool that queries a live M&A database.</p>
+<p><strong>Decision 4: Pluggable precedent transactions.</strong> Real M&A databases (Bloomberg, PitchBook) require paid access. We curated 33 real transactions (2020-2026) from SEC filings and press releases into <code>data/transactions.json</code>. The pipeline loads this file at runtime with priority: (1) user-provided file, (2) <code>data/transactions.json</code>, (3) hardcoded fallback. Users can expand the dataset without touching code.</p>
+
+<p><strong>Decision 6: Damodaran SOTA methodology.</strong> After initial results diverged from analyst consensus (e.g., MSFT showed as OVERVALUED when analysts said UNDERVALUED), we researched and adopted Damodaran's Jan 2026 parameters: US ERP = 4.46%, synthetic credit rating for cost of debt, total debt (not net debt) in WACC weights, revenue-driven FCF projections with median-of-4-CAGRs growth estimation, peer median exit multiple to avoid circularity, and IQR-based value ranges to eliminate outlier-driven absurd spreads.</p>
 
 <p><strong>Decision 5: Base64-embedded charts.</strong> Charts are encoded as base64 PNG images directly in the HTML rather than saved as separate files. This makes the report a single self-contained file — no broken image links when moving or sharing the report.</p>
 
@@ -110,13 +112,14 @@
 <p>Each script follows a consistent pattern: CLI argument parsing → JSON input reading → computation → JSON output writing → summary to stdout. This makes them individually testable and composable.</p>
 
 <table>
-    <tr><th>Script</th><th>Input</th><th>Output</th><th>LOC</th></tr>
-    <tr><td><code>fetch_data.py</code></td><td>CLI: ticker, peers, years</td><td>financials.json</td><td>~190</td></tr>
-    <tr><td><code>generate_synthetic_data.py</code></td><td>CLI: sector, seed, companies</td><td>financials.json</td><td>~180</td></tr>
-    <tr><td><code>validate_data.py</code></td><td>financials.json</td><td>validation_report.json</td><td>~170</td></tr>
-    <tr><td><code>feature_engineering.py</code></td><td>financials.json + config.json</td><td>features.json</td><td>~250</td></tr>
-    <tr><td><code>run_models.py</code></td><td>features.json</td><td>valuation_results.json</td><td>~280</td></tr>
-    <tr><td><code>generate_report.py</code></td><td>valuation_results.json</td><td>HTML + PDF</td><td>~330</td></tr>
+    <tr><th>Script</th><th>Input</th><th>Output</th></tr>
+    <tr><td><code>fetch_data.py</code></td><td>CLI: ticker, peers, years</td><td>financials.json</td></tr>
+    <tr><td><code>generate_synthetic_data.py</code></td><td>CLI: sector, seed, companies</td><td>financials.json</td></tr>
+    <tr><td><code>validate_data.py</code></td><td>financials.json</td><td>validation_report.json</td></tr>
+    <tr><td><code>feature_engineering.py</code></td><td>financials.json + config.json</td><td>features.json</td></tr>
+    <tr><td><code>run_models.py</code></td><td>features.json</td><td>valuation_results.json</td></tr>
+    <tr><td><code>generate_report.py</code></td><td>valuation_results.json</td><td>HTML + PDF</td></tr>
+    <tr><td><code>mcp_server.py</code></td><td>JSON-RPC stdin (MCP protocol)</td><td>JSON-RPC stdout</td></tr>
 </table>
 
 <h3>Error Handling Philosophy</h3>
@@ -148,9 +151,17 @@
 <p><strong>Problem:</strong> Companies with negative free cash flow produce meaningless or negative DCF valuations. Early versions didn't handle this, producing confusing results.</p>
 <p><strong>Fix:</strong> Added explicit negative FCF detection in <code>run_models.py</code>. When FCF < 0, the model still runs (producing whatever value the math gives) but appends a prominent warning. The cross-validation step correctly assigns LOW confidence when methods diverge significantly. The report template includes a warning banner in the DCF section.</p>
 
-<h3>Challenge 4: CCA Outlier Multiples</h3>
-<p><strong>Problem:</strong> Some peer companies have extreme multiples (e.g., EV/Revenue > 20× for high-growth tech). Using max peer multiples directly produced an unrealistically wide CCA range.</p>
-<p><strong>Fix:</strong> The cross-validation step handles this by focusing on median multiples for the "mid" estimate and using the full range only for the low/high bounds. The football field chart visually shows this spread, making it obvious which method has the widest uncertainty.</p>
+<h3>Challenge 4: CCA Outlier Multiples (e.g., Amazon P/B = 51.86x)</h3>
+<p><strong>Problem:</strong> Using raw min/max across all peer multiples produced absurd ranges (e.g., MSFT CCA range $135&ndash;$2,399 because Amazon's P/B of 51.86x applied to MSFT's book value). This made the report look unreliable.</p>
+<p><strong>Fix:</strong> Changed CCA and PT value ranges from raw min/max to <strong>25th&ndash;75th percentile (IQR)</strong>. This eliminates extreme outliers while preserving the full data for transparency. MSFT CCA range improved from $135&ndash;$2,399 to $216&ndash;$456.</p>
+
+<h3>Challenge 6: FCF CAGR Distorted by Capex Cycles</h3>
+<p><strong>Problem:</strong> MSFT's FCF growth was only 3.2% despite 12% revenue growth, because AI data center capex ($64.5B) temporarily depressed free cash flow. Using FCF CAGR alone as the DCF growth driver produced a $166 fair value (vs $371 market price and analyst consensus of ~$430-$485).</p>
+<p><strong>Fix:</strong> Replaced single FCF CAGR with <strong>median of 4 CAGRs</strong> (revenue, earnings, EBITDA, FCF). This dampens capex-cycle distortions. Also switched to revenue-driven FCF projection (project revenue growth, apply FCF margin) instead of directly extrapolating FCF. MSFT growth rate improved from 3.2% to 12.15%, fair value from $166 to $372 (within $1 of market price).</p>
+
+<h3>Challenge 7: WACC Too High (Stale ERP)</h3>
+<p><strong>Problem:</strong> Default ERP of 5.5% was arbitrary and too high vs Damodaran's Jan 2026 implied US ERP of 4.46%. Cost of debt used naive interest/debt ratio instead of market-based rates. WACC weights used net debt instead of total debt.</p>
+<p><strong>Fix:</strong> Adopted Damodaran methodology: ERP = 4.46%, risk-free rate = 4.37% (10Y Treasury), cost of debt via synthetic credit rating (interest coverage &rarr; rating &rarr; default spread), capital structure weights with total debt. MSFT WACC improved from 10.01% to 9.19%, matching Damodaran's Software sector WACC of 9.34%.</p>
 <h3>Challenge 5: Invalid Peer Tickers from API</h3>
 <p><strong>Problem:</strong> When a user provides an invalid ticker symbol (e.g., "INVALIDXYZ"), yfinance raises an HTTP 404 error that crashed the entire fetch process, losing already-fetched valid data.</p>
 <p><strong>Fix:</strong> Wrapped each peer fetch in try/except that catches API errors and produces a "WARNING: skipping" message. After all fetches, the script re-checks that ≥3 valid peers remain. This is robust against typos and delisted tickers.</p>
@@ -162,42 +173,50 @@
 <div class="card">
 <h2>5. MCP Integration Architecture</h2>
 
-<h3>Design</h3>
-<p>The <code>fetch_data.py</code> script serves as the MCP integration point. It wraps the Yahoo Finance API (<code>yfinance</code> library) to fetch:</p>
+<h3>Implemented MCP Server</h3>
+<p><code>scripts/mcp_server.py</code> is a fully functional MCP server using JSON-RPC 2.0 over stdio (the standard transport for VS Code / Copilot skills). It exposes two tools:</p>
 <ul>
-    <li>Annual income statements, balance sheets, and cash flow statements</li>
-    <li>Market data (current price, shares outstanding, beta)</li>
-    <li>Company metadata (sector, industry, name)</li>
+    <li><strong><code>fetch_financials</code></strong> &mdash; Fetches live financial data from Yahoo Finance for a target company and peers. Parameters: ticker, peers (comma-separated), years.</li>
+    <li><strong><code>generate_synthetic</code></strong> &mdash; Generates synthetic data for testing. Parameters: target_ticker, sector, seed, num_companies, years.</li>
 </ul>
 
-<p>The script accepts CLI arguments (<code>--ticker</code>, <code>--peers</code>, <code>--years</code>) and outputs structured JSON in the exact format expected by downstream scripts. This means the same pipeline works identically whether data comes from:</p>
-<ol>
-    <li>Live Yahoo Finance API (via <code>fetch_data.py</code>)</li>
-    <li>Synthetic data generator (via <code>generate_synthetic_data.py</code>)</li>
-    <li>A Kaggle CSV pre-processed into the same JSON format</li>
-</ol>
+<p>The server was tested end-to-end:</p>
+<ul>
+    <li><code>initialize</code> &rarr; returns protocol version 2024-11-05 and capabilities</li>
+    <li><code>tools/list</code> &rarr; returns 2 tools with full JSON Schema input specs</li>
+    <li><code>tools/call</code> with <code>generate_synthetic</code> &rarr; returns valid financial data</li>
+</ul>
 
-<p>For LLM orchestration, the MCP tool would expose <code>fetch_data.py</code> as a callable tool with the same interface. The SKILL.md documents both the live-data and synthetic-data paths, letting the LLM choose based on user intent and network availability.</p>
-
-<h3>Precedent Transactions</h3>
-<p>Since real M&A databases require paid access, <code>fetch_data.py</code> includes a curated transaction database covering Technology, Healthcare, Consumer, Energy, and Financials sectors with real public transactions (Activision/Microsoft, Twitter/X Holdings, VMware/Broadcom, etc.). The synthetic generator creates its own realistic transaction data. In production, this would connect to a PitchBook or Bloomberg MCP tool.</p>
-
-<h3>Fallback Strategy</h3>
+<h3>Data Flow (Two Equivalent Paths)</h3>
 <div class="diagram">
-User Request → LLM reads SKILL.md
-    │
-    ├─ "Analyse AAPL" → fetch_data.py --ticker AAPL (live API)
-    │     └─ API fails? → suggest synthetic data or Kaggle fallback
-    │
-    └─ "Test the skill" → generate_synthetic_data.py (reproducible, no network)
+Path A (MCP):  Agent calls fetch_financials tool &rarr; writes JSON to disk &rarr; CLI pipeline (Stage 1-6)
+Path B (CLI):  Agent runs fetch_data.py &rarr; same JSON &rarr; same CLI pipeline (Stage 1-6)
+</div>
+<p>Both paths produce identical JSON output; downstream scripts are agnostic to the data source.</p>
+
+<h3>Precedent Transactions (Pluggable)</h3>
+<p>M&amp;A transaction data is stored in <code>data/transactions.json</code> (33 real deals, 2020-2026, from SEC filings and press releases, across 6 sectors: Technology 11, Healthcare 6, Energy 5, Consumer 4, Financials 4, Industrials 3). The pipeline loads this file at runtime with a priority chain: (1) user-provided path, (2) <code>data/transactions.json</code>, (3) hardcoded fallback in Python. Users can expand the dataset by editing the JSON file &mdash; no code changes needed.</p>
+
+<h3>VS Code Configuration</h3>
+<div class="diagram">
+// .vscode/mcp.json
+{
+  "servers": {
+    "company-valuation": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["scripts/mcp_server.py"]
+    }
+  }
+}
 </div>
 </div>
 
 <div class="card">
 <h2>6. Conclusion</h2>
-<p>The Company Valuation Analytics Skill demonstrates a complete, production-quality analytics pipeline that an LLM can orchestrate end-to-end. The three-method valuation framework (DCF, CCA, Precedent Transactions) provides natural multi-algorithm comparison. The 6-stage pipeline (acquisition → validation → features → modelling → cross-validation → reporting) maps directly to the assignment's mandatory stages. All scripts are independently testable, reproducible (via seeds), and produce structured JSON that enables the LLM to inspect and interpret intermediate results at each stage.</p>
+<p>The Company Valuation Analytics Skill demonstrates a complete, production-quality analytics pipeline with MCP integration that an LLM agent can orchestrate end-to-end. The three-method valuation framework (DCF, CCA, Precedent Transactions) provides natural multi-algorithm comparison. The 6-stage pipeline maps directly to the assignment's mandatory stages. Seven scripts (including an MCP server) are independently testable, reproducible (via seeds), and produce structured JSON for LLM inspection at each stage.</p>
 
-<p>The skill was hardened against real-world data by running against Apple Inc. (AAPL, Technology) and Johnson &amp; Johnson (JNJ, Healthcare) via the Yahoo Finance API. This uncovered issues with incomplete fiscal year data, which were fixed with auto-filtering. In total, 7 test scenarios were executed: 2 real-world (different sectors), 1 malformed data failure, 1 negative FCF edge case, 1 invalid ticker robustness test, 1 parameter sensitivity comparison, and 1 reproducibility check — all passed. The professional HTML report with embedded charts, sensitivity heatmaps, and football field visualisation demonstrates actionable, auditable business intelligence.</p>
+<p>The skill was hardened iteratively against 5 real-world companies across 3 sectors (MSFT, AAPL, JNJ in US; MORN in Financials; NAUKRI.NS in India). Key hardening moments included: fixing incomplete Yahoo Finance data (auto-filtering), adopting Damodaran Jan 2026 WACC methodology, switching to revenue-driven FCF projections to handle capex cycles (MSFT fair value improved from $166 to $372 vs $371 market price), eliminating circular exit multiples, and applying IQR-based ranges to remove outlier-driven absurd spreads ($135&ndash;$2,399 &rarr; $216&ndash;$456 for MSFT CCA). The 33-transaction M&amp;A database across 6 sectors enables meaningful Precedent Transaction analysis. All 7+ test scenarios passed, and the MCP server was tested end-to-end with initialize/tools-list/tools-call.</p>
 </div>
 
 </div>

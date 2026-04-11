@@ -5,7 +5,9 @@ __pycache__/
 # Intermediate data (regenerable by running the pipeline)
 company-valuation-skill/data/raw/
 company-valuation-skill/data/*.json
+!company-valuation-skill/data/transactions.json
 company-valuation-skill/data/sample/
 
 # Keep reports (they are deliverables)
 # Keep data/data_dictionary.md (it's documentation)
+# Keep data/transactions.json (curated M&A reference data)

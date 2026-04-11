@@ -64,6 +64,85 @@ The user may save these parameters in a `config.json` file.
 
 ---
 
+## MCP Server Configuration
+
+The skill exposes an MCP (Model Context Protocol) server for live data fetching.
+An LLM agent can invoke the `fetch_financials` or `generate_synthetic` tools at
+runtime instead of calling CLI scripts directly.
+
+### Server Location
+
+```
+scripts/mcp_server.py
+```
+
+### Transport
+
+stdio (JSON-RPC 2.0 over stdin/stdout) — standard for VS Code / Copilot skills.
+
+### Starting the Server
+
+```bash
+python scripts/mcp_server.py
+```
+
+### Available MCP Tools
+
+#### 1. `fetch_financials`
+
+Fetches live financial data from Yahoo Finance for a target company and peers.
+
+**Parameters:**
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `ticker` | string | Yes | Target company ticker (e.g., `MSFT`, `NAUKRI.NS`) |
+| `peers` | string | Yes | Comma-separated peer tickers, min 3 (e.g., `AAPL,GOOGL,META,AMZN`) |
+| `years` | integer | No | Historical years to fetch (default: 5) |
+
+**Returns:** JSON with `target`, `peers`, and `precedent_transactions` objects (same format as `fetch_data.py` output).
+
+#### 2. `generate_synthetic`
+
+Generates synthetic financial data for testing without network access.
+
+**Parameters:**
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `target_ticker` | string | No | Synthetic target ticker (default: `SYNTH`) |
+| `peers` | string | No | Comma-separated peer tickers (auto-generated if omitted) |
+| `num_companies` | integer | No | Total companies including target (default: 5) |
+| `years` | integer | No | Years of history (default: 5) |
+| `sector` | string | No | Sector profile: Technology, Healthcare, Consumer, Energy, Financials |
+| `seed` | integer | No | Random seed for reproducibility (default: 42) |
+
+**Returns:** JSON in same format as `fetch_financials`.
+
+### Example MCP Configuration (for VS Code / mcp.json)
+
+```json
+{
+  "servers": {
+    "company-valuation": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["scripts/mcp_server.py"],
+      "cwd": "${workspaceFolder}/company-valuation-skill"
+    }
+  }
+}
+```
+
+### Agent Workflow with MCP
+
+1. Agent calls `fetch_financials` tool with user-provided ticker and peers
+2. Agent writes the returned JSON to `data/raw/financials.json`
+3. Agent proceeds with CLI scripts for Stage 1-6 (validation, features, models, report)
+
+Alternatively, the agent can use the CLI scripts directly (Stage 0 in the pipeline below).
+Both paths produce identical JSON output.
+
+---
+
 ## Analytics Pipeline — Stage-by-Stage Instructions
 
 ### Stage 0: Data Acquisition

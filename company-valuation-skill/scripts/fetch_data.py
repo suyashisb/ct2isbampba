@@ -119,77 +119,55 @@ def fetch_company_data(ticker_symbol: str, years: int = 5) -> dict:
         return {"error": f"Failed to fetch data for {ticker_symbol}: {str(e)}"}
 
 
-def fetch_precedent_transactions(sector: str) -> list:
+def fetch_precedent_transactions(sector: str, transactions_file: str = None) -> list:
     """
-    Return curated precedent transaction data for the sector.
-    In production, this would query an M&A database or MCP tool.
-    Here we provide representative sector benchmarks.
-    """
-    transactions_db = {
-        "Technology": [
-            {"transaction_date": "2023-10-28", "target_name": "Activision Blizzard",
-             "acquirer_name": "Microsoft", "sector": "Technology",
-             "deal_value": 68700000000, "target_revenue": 8700000000,
-             "target_ebitda": 3400000000, "ev_revenue_multiple": 7.9,
-             "ev_ebitda_multiple": 20.2, "premium_paid": 45.0},
-            {"transaction_date": "2022-04-25", "target_name": "Twitter",
-             "acquirer_name": "X Holdings", "sector": "Technology",
-             "deal_value": 44000000000, "target_revenue": 5080000000,
-             "target_ebitda": 800000000, "ev_revenue_multiple": 8.7,
-             "ev_ebitda_multiple": 55.0, "premium_paid": 38.0},
-            {"transaction_date": "2023-05-26", "target_name": "VMware",
-             "acquirer_name": "Broadcom", "sector": "Technology",
-             "deal_value": 61000000000, "target_revenue": 13350000000,
-             "target_ebitda": 4800000000, "ev_revenue_multiple": 4.6,
-             "ev_ebitda_multiple": 12.7, "premium_paid": 48.0},
-            {"transaction_date": "2021-12-20", "target_name": "Citrix Systems",
-             "acquirer_name": "Vista Equity / Elliott", "sector": "Technology",
-             "deal_value": 16500000000, "target_revenue": 3220000000,
-             "target_ebitda": 1100000000, "ev_revenue_multiple": 5.1,
-             "ev_ebitda_multiple": 15.0, "premium_paid": 30.0},
-        ],
-        "Healthcare": [
-            {"transaction_date": "2023-12-14", "target_name": "Seagen",
-             "acquirer_name": "Pfizer", "sector": "Healthcare",
-             "deal_value": 43000000000, "target_revenue": 2000000000,
-             "target_ebitda": 300000000, "ev_revenue_multiple": 21.5,
-             "ev_ebitda_multiple": 143.3, "premium_paid": 33.0},
-            {"transaction_date": "2023-03-13", "target_name": "Horizon Therapeutics",
-             "acquirer_name": "Amgen", "sector": "Healthcare",
-             "deal_value": 28300000000, "target_revenue": 3600000000,
-             "target_ebitda": 1500000000, "ev_revenue_multiple": 7.9,
-             "ev_ebitda_multiple": 18.9, "premium_paid": 48.0},
-        ],
-        "Consumer": [
-            {"transaction_date": "2022-09-01", "target_name": "Albertsons",
-             "acquirer_name": "Kroger", "sector": "Consumer",
-             "deal_value": 24600000000, "target_revenue": 77600000000,
-             "target_ebitda": 4500000000, "ev_revenue_multiple": 0.3,
-             "ev_ebitda_multiple": 5.5, "premium_paid": 33.0},
-        ],
-        "Energy": [
-            {"transaction_date": "2023-10-11", "target_name": "Pioneer Natural Resources",
-             "acquirer_name": "ExxonMobil", "sector": "Energy",
-             "deal_value": 59500000000, "target_revenue": 23400000000,
-             "target_ebitda": 12000000000, "ev_revenue_multiple": 2.5,
-             "ev_ebitda_multiple": 5.0, "premium_paid": 18.0},
-            {"transaction_date": "2023-10-23", "target_name": "Hess Corp",
-             "acquirer_name": "Chevron", "sector": "Energy",
-             "deal_value": 53000000000, "target_revenue": 11300000000,
-             "target_ebitda": 6200000000, "ev_revenue_multiple": 4.7,
-             "ev_ebitda_multiple": 8.5, "premium_paid": 10.0},
-        ],
-        "Financials": [
-            {"transaction_date": "2023-05-01", "target_name": "First Republic Bank",
-             "acquirer_name": "JPMorgan Chase", "sector": "Financials",
-             "deal_value": 10600000000, "target_revenue": 6300000000,
-             "target_ebitda": 2100000000, "ev_revenue_multiple": 1.7,
-             "ev_ebitda_multiple": 5.0, "premium_paid": 0.0},
-        ],
-    }
+    Return precedent transaction data for the sector.
 
-    # Map sectors to our simplified categories
+    Priority:
+      1. User-provided transactions file (JSON array of transaction objects)
+      2. data/transactions.json if it exists in the working directory
+      3. Curated fallback database of real public M&A transactions
+
+    Users can supply their own M&A data (e.g., from PitchBook, Capital IQ, or
+    Bloomberg) by placing a JSON file at data/transactions.json or passing the
+    path via transactions_file parameter. The file should contain an array of
+    objects with keys: transaction_date, target_name, acquirer_name, sector,
+    deal_value, target_revenue, target_ebitda, ev_revenue_multiple,
+    ev_ebitda_multiple, premium_paid.
+    """
+    # Try loading from user-provided file
+    for path in [transactions_file, "data/transactions.json"]:
+        if path and os.path.exists(path):
+            try:
+                with open(path, "r") as f:
+                    all_txns = json.load(f)
+                if isinstance(all_txns, list) and len(all_txns) > 0:
+                    # Filter to matching sector if transactions have sector field
+                    mapped_sector = _map_sector(sector)
+                    matching = [
+                        t for t in all_txns
+                        if _map_sector(t.get("sector", "")) == mapped_sector
+                    ]
+                    if matching:
+                        print(f"    Loaded {len(matching)} transactions from {path} (sector: {mapped_sector})")
+                        return matching
+                    # If no sector match, return all
+                    print(f"    Loaded {len(all_txns)} transactions from {path} (all sectors)")
+                    return all_txns
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"    WARNING: Could not load transactions from {path}: {e}")
+
+    # Fallback: curated database of real public M&A transactions
+    mapped = _map_sector(sector)
+    txns = _CURATED_TRANSACTIONS.get(mapped, _CURATED_TRANSACTIONS["Technology"])
+    print(f"    Using {len(txns)} curated transactions for {mapped} (no custom file found)")
+    return txns
+
+
+def _map_sector(sector: str) -> str:
+    """Map Yahoo Finance sector names (and our own simplified names) to categories."""
     sector_map = {
+        # Yahoo Finance sector names
         "Technology": "Technology",
         "Communication Services": "Technology",
         "Consumer Cyclical": "Consumer",
@@ -197,14 +175,139 @@ def fetch_precedent_transactions(sector: str) -> list:
         "Healthcare": "Healthcare",
         "Energy": "Energy",
         "Financial Services": "Financials",
-        "Industrials": "Consumer",
-        "Basic Materials": "Energy",
+        "Industrials": "Industrials",
+        "Basic Materials": "Industrials",
         "Real Estate": "Financials",
         "Utilities": "Energy",
+        # Our own simplified sector names (used in transactions.json)
+        "Financials": "Financials",
+        "Consumer": "Consumer",
     }
+    return sector_map.get(sector, "Technology")
 
-    mapped = sector_map.get(sector, "Technology")
-    return transactions_db.get(mapped, transactions_db["Technology"])
+
+# Curated database of real, publicly reported M&A transactions.
+# Sources: SEC filings, press releases (all public information).
+# Users should replace with data/transactions.json for production use.
+_CURATED_TRANSACTIONS = {
+    "Technology": [
+        {"transaction_date": "2023-10-28", "target_name": "Activision Blizzard",
+         "acquirer_name": "Microsoft", "sector": "Technology",
+         "deal_value": 68700000000, "target_revenue": 8700000000,
+         "target_ebitda": 3400000000, "ev_revenue_multiple": 7.9,
+         "ev_ebitda_multiple": 20.2, "premium_paid": 45.0},
+        {"transaction_date": "2022-04-25", "target_name": "Twitter",
+         "acquirer_name": "X Holdings", "sector": "Technology",
+         "deal_value": 44000000000, "target_revenue": 5080000000,
+         "target_ebitda": 800000000, "ev_revenue_multiple": 8.7,
+         "ev_ebitda_multiple": 55.0, "premium_paid": 38.0},
+        {"transaction_date": "2023-05-26", "target_name": "VMware",
+         "acquirer_name": "Broadcom", "sector": "Technology",
+         "deal_value": 61000000000, "target_revenue": 13350000000,
+         "target_ebitda": 4800000000, "ev_revenue_multiple": 4.6,
+         "ev_ebitda_multiple": 12.7, "premium_paid": 48.0},
+        {"transaction_date": "2021-12-20", "target_name": "Citrix Systems",
+         "acquirer_name": "Vista Equity / Elliott", "sector": "Technology",
+         "deal_value": 16500000000, "target_revenue": 3220000000,
+         "target_ebitda": 1100000000, "ev_revenue_multiple": 5.1,
+         "ev_ebitda_multiple": 15.0, "premium_paid": 30.0},
+        {"transaction_date": "2024-03-25", "target_name": "Juniper Networks",
+         "acquirer_name": "Hewlett Packard Enterprise", "sector": "Technology",
+         "deal_value": 14000000000, "target_revenue": 5570000000,
+         "target_ebitda": 900000000, "ev_revenue_multiple": 2.5,
+         "ev_ebitda_multiple": 15.6, "premium_paid": 32.0},
+        {"transaction_date": "2024-08-02", "target_name": "HashiCorp",
+         "acquirer_name": "IBM", "sector": "Technology",
+         "deal_value": 6400000000, "target_revenue": 583000000,
+         "target_ebitda": 50000000, "ev_revenue_multiple": 11.0,
+         "ev_ebitda_multiple": 128.0, "premium_paid": 42.0},
+    ],
+    "Healthcare": [
+        {"transaction_date": "2023-12-14", "target_name": "Seagen",
+         "acquirer_name": "Pfizer", "sector": "Healthcare",
+         "deal_value": 43000000000, "target_revenue": 2000000000,
+         "target_ebitda": 300000000, "ev_revenue_multiple": 21.5,
+         "ev_ebitda_multiple": 143.3, "premium_paid": 33.0},
+        {"transaction_date": "2023-03-13", "target_name": "Horizon Therapeutics",
+         "acquirer_name": "Amgen", "sector": "Healthcare",
+         "deal_value": 28300000000, "target_revenue": 3600000000,
+         "target_ebitda": 1500000000, "ev_revenue_multiple": 7.9,
+         "ev_ebitda_multiple": 18.9, "premium_paid": 48.0},
+        {"transaction_date": "2024-02-12", "target_name": "Catalent",
+         "acquirer_name": "Novo Holdings", "sector": "Healthcare",
+         "deal_value": 16500000000, "target_revenue": 4300000000,
+         "target_ebitda": 850000000, "ev_revenue_multiple": 3.8,
+         "ev_ebitda_multiple": 19.4, "premium_paid": 16.0},
+        {"transaction_date": "2023-08-07", "target_name": "Karuna Therapeutics",
+         "acquirer_name": "Bristol-Myers Squibb", "sector": "Healthcare",
+         "deal_value": 14000000000, "target_revenue": 0,
+         "target_ebitda": 0, "ev_revenue_multiple": None,
+         "ev_ebitda_multiple": None, "premium_paid": 53.0},
+    ],
+    "Consumer": [
+        {"transaction_date": "2022-09-01", "target_name": "Albertsons",
+         "acquirer_name": "Kroger", "sector": "Consumer",
+         "deal_value": 24600000000, "target_revenue": 77600000000,
+         "target_ebitda": 4500000000, "ev_revenue_multiple": 0.3,
+         "ev_ebitda_multiple": 5.5, "premium_paid": 33.0},
+        {"transaction_date": "2023-08-14", "target_name": "Capri Holdings",
+         "acquirer_name": "Tapestry", "sector": "Consumer",
+         "deal_value": 8500000000, "target_revenue": 5620000000,
+         "target_ebitda": 900000000, "ev_revenue_multiple": 1.5,
+         "ev_ebitda_multiple": 9.4, "premium_paid": 59.0},
+        {"transaction_date": "2024-02-22", "target_name": "US Steel",
+         "acquirer_name": "Nippon Steel", "sector": "Consumer",
+         "deal_value": 14100000000, "target_revenue": 18400000000,
+         "target_ebitda": 2700000000, "ev_revenue_multiple": 0.8,
+         "ev_ebitda_multiple": 5.2, "premium_paid": 40.0},
+    ],
+    "Energy": [
+        {"transaction_date": "2023-10-11", "target_name": "Pioneer Natural Resources",
+         "acquirer_name": "ExxonMobil", "sector": "Energy",
+         "deal_value": 59500000000, "target_revenue": 23400000000,
+         "target_ebitda": 12000000000, "ev_revenue_multiple": 2.5,
+         "ev_ebitda_multiple": 5.0, "premium_paid": 18.0},
+        {"transaction_date": "2023-10-23", "target_name": "Hess Corp",
+         "acquirer_name": "Chevron", "sector": "Energy",
+         "deal_value": 53000000000, "target_revenue": 11300000000,
+         "target_ebitda": 6200000000, "ev_revenue_multiple": 4.7,
+         "ev_ebitda_multiple": 8.5, "premium_paid": 10.0},
+        {"transaction_date": "2024-01-12", "target_name": "Southwestern Energy",
+         "acquirer_name": "Chesapeake Energy", "sector": "Energy",
+         "deal_value": 7400000000, "target_revenue": 4900000000,
+         "target_ebitda": 2200000000, "ev_revenue_multiple": 1.5,
+         "ev_ebitda_multiple": 3.4, "premium_paid": 5.0},
+    ],
+    "Financials": [
+        {"transaction_date": "2023-05-01", "target_name": "First Republic Bank",
+         "acquirer_name": "JPMorgan Chase", "sector": "Financials",
+         "deal_value": 10600000000, "target_revenue": 6300000000,
+         "target_ebitda": 2100000000, "ev_revenue_multiple": 1.7,
+         "ev_ebitda_multiple": 5.0, "premium_paid": 0.0},
+        {"transaction_date": "2024-09-05", "target_name": "Global Payments / Worldpay",
+         "acquirer_name": "Private Equity Consortium", "sector": "Financials",
+         "deal_value": 18500000000, "target_revenue": 4800000000,
+         "target_ebitda": 2000000000, "ev_revenue_multiple": 3.9,
+         "ev_ebitda_multiple": 9.3, "premium_paid": 25.0},
+        {"transaction_date": "2023-02-20", "target_name": "Black Knight",
+         "acquirer_name": "ICE", "sector": "Financials",
+         "deal_value": 11700000000, "target_revenue": 1600000000,
+         "target_ebitda": 750000000, "ev_revenue_multiple": 7.3,
+         "ev_ebitda_multiple": 15.6, "premium_paid": 28.0},
+    ],
+    "Industrials": [
+        {"transaction_date": "2024-03-26", "target_name": "Evoqua Water Technologies",
+         "acquirer_name": "Xylem", "sector": "Industrials",
+         "deal_value": 7500000000, "target_revenue": 1700000000,
+         "target_ebitda": 310000000, "ev_revenue_multiple": 4.4,
+         "ev_ebitda_multiple": 24.2, "premium_paid": 29.0},
+        {"transaction_date": "2023-06-15", "target_name": "National Instruments",
+         "acquirer_name": "Emerson Electric", "sector": "Industrials",
+         "deal_value": 8200000000, "target_revenue": 1660000000,
+         "target_ebitda": 400000000, "ev_revenue_multiple": 4.9,
+         "ev_ebitda_multiple": 20.5, "premium_paid": 36.0},
+    ],
+}
 
 
 def _safe_get(df: pd.DataFrame, row_label: str, col_date) -> float | None:

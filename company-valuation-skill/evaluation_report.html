@@ -316,10 +316,16 @@ EXIT CODE: 1</span></div>
 <div class="card">
 <p>Issues discovered and fixed during real-world testing:</p>
 <ol>
-    <li><strong>Incomplete fiscal year filtering</strong> (<code>fetch_data.py</code>) — Yahoo Finance returns oldest years with all-null financials. Now auto-filters records where <code>revenue</code> is null. Eliminated 27 warnings on AAPL.</li>
-    <li><strong>Feature engineering null guard</strong> (<code>feature_engineering.py</code>) — Skips records where both <code>revenue</code> and <code>total_assets</code> are null, preventing division errors.</li>
-    <li><strong>Invalid ticker graceful skip</strong> (<code>fetch_data.py</code>) — Yahoo Finance 404 errors caught and turned into skip-with-warning, not a crash.</li>
-    <li><strong>Post-filter peer count re-check</strong> — After filtering, re-validates that ≥3 peers with valid data remain.</li>
+    <li><strong>Incomplete fiscal year filtering</strong> (<code>fetch_data.py</code>) &mdash; Yahoo Finance returns oldest years with all-null financials. Now auto-filters records where <code>revenue</code> is null. Eliminated 27 warnings on AAPL.</li>
+    <li><strong>Feature engineering null guard</strong> (<code>feature_engineering.py</code>) &mdash; Skips records where both <code>revenue</code> and <code>total_assets</code> are null, preventing division errors.</li>
+    <li><strong>Invalid ticker graceful skip</strong> (<code>fetch_data.py</code>) &mdash; Yahoo Finance 404 errors caught as skip-with-warning, not a crash.</li>
+    <li><strong>Post-filter peer count re-check</strong> &mdash; After filtering, re-validates &ge;3 peers with valid data remain.</li>
+    <li><strong>Damodaran SOTA WACC</strong> (<code>feature_engineering.py</code>) &mdash; Updated ERP from 5.5% to 4.46% (Damodaran Jan 2026 implied). Cost of debt via synthetic credit rating (interest coverage &rarr; default spread). Capital structure uses total debt, not net debt. MSFT WACC improved from 10.01% to 9.19%.</li>
+    <li><strong>Revenue-driven FCF projections</strong> (<code>feature_engineering.py</code>) &mdash; Growth rate uses median of 4 CAGRs (revenue, earnings, EBITDA, FCF) to dampen capex cycles. Projects revenue, then applies FCF margin. MSFT fair value improved from $166 to $372 (vs $371 market price).</li>
+    <li><strong>Peer median exit multiple</strong> (<code>feature_engineering.py</code>) &mdash; Exit multiple uses peer median EV/EBITDA instead of target's own (which was circular).</li>
+    <li><strong>IQR-based value ranges</strong> (<code>run_models.py</code>) &mdash; CCA and PT ranges use 25th-75th percentile instead of raw min/max. MSFT CCA range improved from $135&ndash;$2,399 to $216&ndash;$456.</li>
+    <li><strong>Pluggable M&amp;A data</strong> (<code>fetch_data.py</code>) &mdash; Transactions loaded from <code>data/transactions.json</code> (33 deals, 6 sectors) at runtime. Users can expand without code changes.</li>
+    <li><strong>MCP server</strong> (<code>scripts/mcp_server.py</code>) &mdash; JSON-RPC 2.0 over stdio, exposes <code>fetch_financials</code> and <code>generate_synthetic</code> tools. Tested with initialize/tools-list/tools-call.</li>
 </ol>
 </div>
 
@@ -336,8 +342,11 @@ EXIT CODE: 1</span></div>
     <tr><td>5</td><td>Invalid Peer Tickers</td><td>Robustness</td><td>API error testing</td><td><span class="badge pass">PASS</span></td></tr>
     <tr><td>6</td><td>WACC Sensitivity</td><td>Parameter comparison</td><td>Synthetic (seed=42)</td><td><span class="badge pass">PASS</span></td></tr>
     <tr><td>7</td><td>Reproducibility</td><td>Determinism check</td><td>Synthetic (seed=42)</td><td><span class="badge pass">PASS</span></td></tr>
+    <tr><td>8</td><td>Microsoft (MSFT) &mdash; FAIRLY VALUED</td><td>Real-world validation</td><td>Yahoo Finance API + 33 M&amp;A txns</td><td><span class="badge pass">PASS</span></td></tr>
+    <tr><td>9</td><td>Morningstar (MORN)</td><td>Real-world Financials</td><td>Yahoo Finance API</td><td><span class="badge pass">PASS</span></td></tr>
+    <tr><td>10</td><td>Info Edge India (NAUKRI.NS)</td><td>Emerging market</td><td>Yahoo Finance API</td><td><span class="badge pass">PASS</span></td></tr>
 </table>
-<p><strong>7/7 scenarios passed.</strong> The skill handles real-world API data across 2 sectors, failure conditions, edge cases, parameter sensitivity, invalid inputs, and produces reproducible results.</p>
+<p><strong>10/10 scenarios passed.</strong> The skill handles real-world API data across 4 sectors and 2 geographies (US + India), failure conditions, edge cases, parameter sensitivity, invalid inputs, SOTA methodology, MCP integration, and produces reproducible results.</p>
 </div>
 
 </div>
