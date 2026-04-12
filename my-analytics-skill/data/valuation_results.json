@@ -1,11 +1,11 @@
 {
   "target": {
-    "ticker": "TCS.NS",
-    "company_name": "Tata Consultancy Services Limited",
+    "ticker": "SYNTH",
+    "company_name": "Synthetic SYNTH Corp",
     "sector": "Technology",
-    "currency": "INR",
-    "current_price": 2524.3,
-    "shares_outstanding": 3618087518
+    "currency": "USD",
+    "current_price": 476.86,
+    "shares_outstanding": 6863737376.404758
   },
   "config": {
     "risk_free_rate": 0.0437,
@@ -13,282 +13,331 @@
     "projection_years": 5,
     "terminal_growth_rate": 0.025,
     "tax_rate": 0.21,
-    "exit_ev_ebitda_multiple": 16.0
+    "exit_ev_ebitda_multiple": 30.89
   },
   "features": [
     {
-      "ticker": "TCS.NS",
+      "ticker": "SYNTH",
+      "fiscal_year": 2021,
+      "company_name": "Synthetic SYNTH Corp",
+      "sector": "Technology",
+      "revenue": 310712639179.61,
+      "cost_of_revenue": 158571393252.88,
+      "operating_income": 68272451513.61,
+      "net_income": 58656065913.48,
+      "ebitda": 86209655830.12,
+      "interest_expense": 827666197.98,
+      "tax_provision": 15592118787.13,
+      "total_assets": 849532607181.98,
+      "total_liabilities": 258245513970.46,
+      "total_equity": 591287093211.52,
+      "total_debt": 137651123891.57,
+      "cash_and_equivalents": 29656820552.89,
+      "operating_cash_flow": 70634531358.66,
+      "capex": 21372214465.85,
+      "depreciation": 17937204316.52,
+      "dividends_paid": 14820379452.04,
+      "shares_outstanding": 6863737376.404758,
+      "stock_price": 264.65,
+      "beta": 1.09,
+      "gross_margin": 0.4897,
+      "operating_margin": 0.2197,
+      "net_margin": 0.1888,
+      "roe": 0.0992,
+      "roa": 0.069,
+      "debt_to_equity": 0.4368,
+      "interest_coverage": 82.49,
+      "net_debt": 107994303338.68,
+      "net_debt_to_ebitda": 1.25,
+      "fcff": 49262316892.81,
+      "fcf_margin": 0.1585,
+      "eps": 8.55,
+      "book_value_per_share": 86.15,
+      "fcf_per_share": 7.18,
+      "market_cap": 1816488096665.52,
+      "enterprise_value": 1924482400004.2,
+      "ev_ebitda": 22.32,
+      "ev_revenue": 6.19,
+      "pe_ratio": 30.97,
+      "pb_ratio": 3.07,
+      "revenue_cagr": 0.1579
+    },
+    {
+      "ticker": "SYNTH",
+      "fiscal_year": 2022,
+      "company_name": "Synthetic SYNTH Corp",
+      "sector": "Technology",
+      "revenue": 364362697158.54,
+      "cost_of_revenue": 182133872726.03,
+      "operating_income": 75296038364.97,
+      "net_income": 65490456328.89,
+      "ebitda": 99795096673.14,
+      "interest_expense": 1081879976.94,
+      "tax_provision": 17408855479.83,
+      "total_assets": 570484733109.72,
+      "total_liabilities": 173419032852.57,
+      "total_equity": 397065700257.15,
+      "total_debt": 77394633489.13,
+      "cash_and_equivalents": 67993646636.88,
+      "operating_cash_flow": 87027865206.34,
+      "capex": 19995340405.87,
+      "depreciation": 24499058308.17,
+      "dividends_paid": 9704630079.88,
+      "shares_outstanding": 6863737376.404758,
+      "stock_price": 318.5,
+      "beta": 0.91,
+      "gross_margin": 0.5001,
+      "operating_margin": 0.2067,
+      "net_margin": 0.1797,
+      "roe": 0.1649,
+      "roa": 0.1148,
+      "debt_to_equity": 0.4368,
+      "interest_coverage": 69.6,
+      "net_debt": 9400986852.25,
+      "net_debt_to_ebitda": 0.09,
+      "fcff": 67032524800.47,
+      "fcf_margin": 0.184,
+      "eps": 9.54,
+      "book_value_per_share": 57.85,
+      "fcf_per_share": 9.77,
+      "market_cap": 2186100354384.92,
+      "enterprise_value": 2195501341237.17,
+      "ev_ebitda": 22.0,
+      "ev_revenue": 6.03,
+      "pe_ratio": 33.38,
+      "pb_ratio": 5.51,
+      "revenue_growth_yoy": 0.1727,
+      "earnings_growth_yoy": 0.1165,
+      "fcf_growth_yoy": 0.3607,
+      "revenue_cagr": 0.1579
+    },
+    {
+      "ticker": "SYNTH",
       "fiscal_year": 2023,
-      "company_name": "Tata Consultancy Services Limited",
+      "company_name": "Synthetic SYNTH Corp",
       "sector": "Technology",
-      "revenue": 2254580000000.0,
-      "cost_of_revenue": 1197590000000.0,
-      "operating_income": 543770000000.0,
-      "net_income": 421470000000.0,
-      "ebitda": 627080000000.0,
-      "interest_expense": 7790000000.0,
-      "tax_provision": 146040000000.0,
-      "total_assets": 1436510000000.0,
-      "total_liabilities": 524450000000.0,
-      "total_equity": 904240000000.0,
-      "total_debt": 76880000000.0,
-      "cash_and_equivalents": 71150000000.0,
-      "operating_cash_flow": 419650000000.0,
-      "capex": 31000000000.0,
-      "depreciation": 50220000000.0,
-      "dividends_paid": null,
-      "shares_outstanding": 3618087518,
-      "stock_price": 2524.3,
-      "beta": 0.272,
-      "gross_margin": 0.4688,
-      "operating_margin": 0.2412,
-      "net_margin": 0.1869,
-      "roe": 0.4661,
-      "roa": 0.2934,
-      "debt_to_equity": 0.58,
-      "interest_coverage": 69.8,
-      "net_debt": 5730000000.0,
-      "net_debt_to_ebitda": 0.01,
-      "fcff": 388650000000.0,
-      "fcf_margin": 0.1724,
-      "eps": 116.49,
-      "book_value_per_share": 249.92,
-      "fcf_per_share": 107.42,
-      "market_cap": 9133138321687.4,
-      "enterprise_value": 9138868321687.4,
-      "ev_ebitda": 14.57,
-      "ev_revenue": 4.05,
-      "pe_ratio": 21.67,
-      "pb_ratio": 10.1,
-      "revenue_cagr": 0.058
+      "revenue": 417537057664.95,
+      "cost_of_revenue": 213008244620.08,
+      "operating_income": 84630503811.83,
+      "net_income": 76279762658.53,
+      "ebitda": 114531580976.15,
+      "interest_expense": 1297469237.49,
+      "tax_provision": 20276898934.55,
+      "total_assets": 1147816592443.05,
+      "total_liabilities": 348919492145.85,
+      "total_equity": 798897100297.2,
+      "total_debt": 212868639985.77,
+      "cash_and_equivalents": 46961782554.32,
+      "operating_cash_flow": 108119558937.59,
+      "capex": 25539429954.1,
+      "depreciation": 29901077164.32,
+      "dividends_paid": 8797439734.23,
+      "shares_outstanding": 6863737376.404758,
+      "stock_price": 374.46,
+      "beta": 0.85,
+      "gross_margin": 0.4898,
+      "operating_margin": 0.2027,
+      "net_margin": 0.1827,
+      "roe": 0.0955,
+      "roa": 0.0665,
+      "debt_to_equity": 0.4368,
+      "interest_coverage": 65.23,
+      "net_debt": 165906857431.45,
+      "net_debt_to_ebitda": 1.45,
+      "fcff": 82580128983.49,
+      "fcf_margin": 0.1978,
+      "eps": 11.11,
+      "book_value_per_share": 116.39,
+      "fcf_per_share": 12.03,
+      "market_cap": 2570195097968.53,
+      "enterprise_value": 2736101955399.98,
+      "ev_ebitda": 23.89,
+      "ev_revenue": 6.55,
+      "pe_ratio": 33.69,
+      "pb_ratio": 3.22,
+      "revenue_growth_yoy": 0.1459,
+      "earnings_growth_yoy": 0.1647,
+      "fcf_growth_yoy": 0.2319,
+      "revenue_cagr": 0.1579
     },
     {
-      "ticker": "TCS.NS",
+      "ticker": "SYNTH",
       "fiscal_year": 2024,
-      "company_name": "Tata Consultancy Services Limited",
+      "company_name": "Synthetic SYNTH Corp",
       "sector": "Technology",
-      "revenue": 2408930000000.0,
-      "cost_of_revenue": 1328710000000.0,
-      "operating_income": 594250000000.0,
-      "net_income": 459080000000.0,
-      "ebitda": 677600000000.0,
-      "interest_expense": 7780000000.0,
-      "tax_provision": 158980000000.0,
-      "total_assets": 1464490000000.0,
-      "total_liabilities": 551300000000.0,
-      "total_equity": 904890000000.0,
-      "total_debt": 80210000000.0,
-      "cash_and_equivalents": 90070000000.0,
-      "operating_cash_flow": 443380000000.0,
-      "capex": 26740000000.0,
-      "depreciation": 49850000000.0,
-      "dividends_paid": null,
-      "shares_outstanding": 3618087518,
-      "stock_price": 2524.3,
-      "beta": 0.272,
-      "gross_margin": 0.4484,
-      "operating_margin": 0.2467,
-      "net_margin": 0.1906,
-      "roe": 0.5073,
-      "roa": 0.3135,
-      "debt_to_equity": 0.6092,
-      "interest_coverage": 76.38,
-      "net_debt": -9860000000.0,
-      "net_debt_to_ebitda": -0.01,
-      "fcff": 416640000000.0,
-      "fcf_margin": 0.173,
-      "eps": 126.88,
-      "book_value_per_share": 250.1,
-      "fcf_per_share": 115.15,
-      "market_cap": 9133138321687.4,
-      "enterprise_value": 9123278321687.4,
-      "ev_ebitda": 13.46,
-      "ev_revenue": 3.79,
-      "pe_ratio": 19.89,
-      "pb_ratio": 10.09,
-      "revenue_growth_yoy": 0.0685,
-      "earnings_growth_yoy": 0.0892,
-      "fcf_growth_yoy": 0.072,
-      "revenue_cagr": 0.058
+      "revenue": 485092554742.19,
+      "cost_of_revenue": 240866922547.69,
+      "operating_income": 103725307851.4,
+      "net_income": 91006814155.03,
+      "ebitda": 121668808642.02,
+      "interest_expense": 808109111.26,
+      "tax_provision": 24191684775.39,
+      "total_assets": 1295727592443.04,
+      "total_liabilities": 393882277439.74,
+      "total_equity": 901845315003.3,
+      "total_debt": 211780548222.52,
+      "cash_and_equivalents": 79433051683.49,
+      "operating_cash_flow": 123454012942.78,
+      "capex": 24905471005.66,
+      "depreciation": 17943500790.62,
+      "dividends_paid": 17149185952.64,
+      "shares_outstanding": 6863737376.404758,
+      "stock_price": 331.21,
+      "beta": 1.54,
+      "gross_margin": 0.5035,
+      "operating_margin": 0.2138,
+      "net_margin": 0.1876,
+      "roe": 0.1009,
+      "roa": 0.0702,
+      "debt_to_equity": 0.4368,
+      "interest_coverage": 128.36,
+      "net_debt": 132347496539.03,
+      "net_debt_to_ebitda": 1.09,
+      "fcff": 98548541937.12,
+      "fcf_margin": 0.2032,
+      "eps": 13.26,
+      "book_value_per_share": 131.39,
+      "fcf_per_share": 14.36,
+      "market_cap": 2273338456439.02,
+      "enterprise_value": 2405685952978.05,
+      "ev_ebitda": 19.77,
+      "ev_revenue": 4.96,
+      "pe_ratio": 24.98,
+      "pb_ratio": 2.52,
+      "revenue_growth_yoy": 0.1618,
+      "earnings_growth_yoy": 0.1931,
+      "fcf_growth_yoy": 0.1934,
+      "revenue_cagr": 0.1579
     },
     {
-      "ticker": "TCS.NS",
+      "ticker": "SYNTH",
       "fiscal_year": 2025,
-      "company_name": "Tata Consultancy Services Limited",
+      "company_name": "Synthetic SYNTH Corp",
       "sector": "Technology",
-      "revenue": 2553240000000.0,
-      "cost_of_revenue": 1574360000000.0,
-      "operating_income": 621650000000.0,
-      "net_income": 485530000000.0,
-      "ebitda": 713690000000.0,
-      "interest_expense": 7960000000.0,
-      "tax_provision": 165340000000.0,
-      "total_assets": 1596290000000.0,
-      "total_liabilities": 638580000000.0,
-      "total_equity": 947560000000.0,
-      "total_debt": 93920000000.0,
-      "cash_and_equivalents": 83310000000.0,
-      "operating_cash_flow": 489080000000.0,
-      "capex": 39370000000.0,
-      "depreciation": 52420000000.0,
-      "dividends_paid": null,
-      "shares_outstanding": 3618087518,
-      "stock_price": 2524.3,
-      "beta": 0.272,
-      "gross_margin": 0.3834,
-      "operating_margin": 0.2435,
-      "net_margin": 0.1902,
-      "roe": 0.5124,
-      "roa": 0.3042,
-      "debt_to_equity": 0.6739,
-      "interest_coverage": 78.1,
-      "net_debt": 10610000000.0,
-      "net_debt_to_ebitda": 0.01,
-      "fcff": 449710000000.0,
-      "fcf_margin": 0.1761,
-      "eps": 134.2,
-      "book_value_per_share": 261.9,
-      "fcf_per_share": 124.29,
-      "market_cap": 9133138321687.4,
-      "enterprise_value": 9143748321687.4,
-      "ev_ebitda": 12.81,
-      "ev_revenue": 3.58,
-      "pe_ratio": 18.81,
-      "pb_ratio": 9.64,
-      "revenue_growth_yoy": 0.0599,
-      "earnings_growth_yoy": 0.0576,
-      "fcf_growth_yoy": 0.0794,
-      "revenue_cagr": 0.058
-    },
-    {
-      "ticker": "TCS.NS",
-      "fiscal_year": 2026,
-      "company_name": "Tata Consultancy Services Limited",
-      "sector": "Technology",
-      "revenue": 2670210000000.0,
-      "cost_of_revenue": 1593930000000.0,
-      "operating_income": 668380000000.0,
-      "net_income": 492100000000.0,
-      "ebitda": 722740000000.0,
-      "interest_expense": 12270000000.0,
-      "tax_provision": 160330000000.0,
-      "total_assets": 1823720000000.0,
-      "total_liabilities": 738940000000.0,
-      "total_equity": 1072400000000.0,
-      "total_debt": 112830000000.0,
-      "cash_and_equivalents": 64170000000.0,
-      "operating_cash_flow": 520940000000.0,
-      "capex": 41870000000.0,
-      "depreciation": 55600000000.0,
-      "dividends_paid": null,
-      "shares_outstanding": 3618087518,
-      "stock_price": 2524.3,
-      "beta": 0.272,
-      "gross_margin": 0.4031,
-      "operating_margin": 0.2503,
-      "net_margin": 0.1843,
-      "roe": 0.4589,
-      "roa": 0.2698,
-      "debt_to_equity": 0.6891,
-      "interest_coverage": 54.47,
-      "net_debt": 48660000000.0,
-      "net_debt_to_ebitda": 0.07,
-      "fcff": 479070000000.0,
-      "fcf_margin": 0.1794,
-      "eps": 136.01,
-      "book_value_per_share": 296.4,
-      "fcf_per_share": 132.41,
-      "market_cap": 9133138321687.4,
-      "enterprise_value": 9181798321687.4,
-      "ev_ebitda": 12.7,
-      "ev_revenue": 3.44,
-      "pe_ratio": 18.56,
-      "pb_ratio": 8.52,
-      "revenue_growth_yoy": 0.0458,
-      "earnings_growth_yoy": 0.0135,
-      "fcf_growth_yoy": 0.0653,
-      "revenue_cagr": 0.058
+      "revenue": 558570495549.37,
+      "cost_of_revenue": 273006035355.84,
+      "operating_income": 121794554145.3,
+      "net_income": 105515969612.32,
+      "ebitda": 162385957888.72,
+      "interest_expense": 1336128331.15,
+      "tax_provision": 28048548884.29,
+      "total_assets": 1203761916101.87,
+      "total_liabilities": 365926054036.91,
+      "total_equity": 837835862064.96,
+      "total_debt": 169927058389.26,
+      "cash_and_equivalents": 73566934171.74,
+      "operating_cash_flow": 133446957341.23,
+      "capex": 28378440542.7,
+      "depreciation": 40591403743.42,
+      "dividends_paid": 11876197680.0,
+      "shares_outstanding": 6863737376.404758,
+      "stock_price": 476.86,
+      "beta": 1.43,
+      "gross_margin": 0.5112,
+      "operating_margin": 0.218,
+      "net_margin": 0.1889,
+      "roe": 0.1259,
+      "roa": 0.0877,
+      "debt_to_equity": 0.4368,
+      "interest_coverage": 91.15,
+      "net_debt": 96360124217.52,
+      "net_debt_to_ebitda": 0.59,
+      "fcff": 105068516798.53,
+      "fcf_margin": 0.1881,
+      "eps": 15.37,
+      "book_value_per_share": 122.07,
+      "fcf_per_share": 15.31,
+      "market_cap": 3273041805312.37,
+      "enterprise_value": 3369401929529.89,
+      "ev_ebitda": 20.75,
+      "ev_revenue": 6.03,
+      "pe_ratio": 31.02,
+      "pb_ratio": 3.91,
+      "revenue_growth_yoy": 0.1515,
+      "earnings_growth_yoy": 0.1594,
+      "fcf_growth_yoy": 0.0662,
+      "revenue_cagr": 0.1579
     }
   ],
   "dcf": {
     "method": "DCF",
     "gordon_growth": {
-      "enterprise_value": 17223867213882.35,
-      "equity_value": 17175207213882.35,
-      "price_per_share": 4747.04
+      "enterprise_value": 1918240422990.81,
+      "equity_value": 1821880298773.29,
+      "price_per_share": 265.44
     },
     "exit_multiple": {
-      "enterprise_value": 13060687145158.36,
-      "equity_value": 13012027145158.36,
-      "price_per_share": 3596.38,
-      "exit_ev_ebitda": 16.0
+      "enterprise_value": 5341110443035.28,
+      "equity_value": 5244750318817.76,
+      "price_per_share": 764.12,
+      "exit_ev_ebitda": 30.89
     },
     "blended": {
-      "enterprise_value": 15142277179520.36,
-      "equity_value": 15093617179520.36,
-      "price_per_share": 4171.71
+      "enterprise_value": 3629675433013.04,
+      "equity_value": 3533315308795.52,
+      "price_per_share": 514.78
     },
     "wacc": {
       "risk_free_rate": 0.0437,
       "equity_risk_premium": 0.0446,
-      "beta": 0.272,
-      "cost_of_equity": 0.0558,
+      "beta": 1.43,
+      "cost_of_equity": 0.1075,
       "cost_of_debt": 0.05,
       "default_spread": 0.0063,
-      "interest_coverage": 54.47,
+      "interest_coverage": 91.15,
       "tax_rate": 0.21,
-      "market_cap": 9133138321687.4,
-      "total_debt": 112830000000.0,
-      "net_debt": 48660000000.0,
-      "weight_equity": 0.9878,
-      "weight_debt": 0.0122,
-      "wacc": 0.0556
+      "market_cap": 3273041805312.37,
+      "total_debt": 169927058389.26,
+      "net_debt": 96360124217.52,
+      "weight_equity": 0.9506,
+      "weight_debt": 0.0494,
+      "wacc": 0.1041
     },
     "projections": [
       {
         "year": 1,
-        "growth_rate": 0.0528,
-        "projected_fcf": 504355791935.35,
-        "discount_factor": 0.9473,
-        "present_value": 477790632754.21
+        "growth_rate": 0.1523,
+        "projected_fcf": 126376855119.58,
+        "discount_factor": 0.9057,
+        "present_value": 114461421175.24
       },
       {
         "year": 2,
-        "growth_rate": 0.0478,
-        "projected_fcf": 528459674196.58,
-        "discount_factor": 0.8974,
-        "present_value": 474256279072.8
+        "growth_rate": 0.1294,
+        "projected_fcf": 142735607418.49,
+        "discount_factor": 0.8203,
+        "present_value": 117088841163.45
       },
       {
         "year": 3,
-        "growth_rate": 0.0413,
-        "projected_fcf": 550301002850.51,
-        "discount_factor": 0.8502,
-        "present_value": 467845180127.26
+        "growth_rate": 0.0998,
+        "projected_fcf": 156985588528.28,
+        "discount_factor": 0.743,
+        "present_value": 116636520642.48
       },
       {
         "year": 4,
-        "growth_rate": 0.0337,
-        "projected_fcf": 568834473621.02,
-        "discount_factor": 0.8054,
-        "present_value": 458129631234.37
+        "growth_rate": 0.0648,
+        "projected_fcf": 167153780421.51,
+        "discount_factor": 0.6729,
+        "present_value": 112481879290.61
       },
       {
         "year": 5,
         "growth_rate": 0.025,
-        "projected_fcf": 583055335461.54,
-        "discount_factor": 0.763,
-        "present_value": 444849253519.54
+        "projected_fcf": 171332624932.05,
+        "discount_factor": 0.6095,
+        "present_value": 104423445587.24
       }
     ],
     "terminal_growth_rate": 0.025,
     "sensitivity": {
       "wacc_range": [
-        0.0356,
-        0.0456,
-        0.0556,
-        0.0656,
-        0.0756
+        0.0841,
+        0.0941,
+        0.1041,
+        0.1141,
+        0.1241
       ],
       "growth_range": [
         0.015,
@@ -299,61 +348,61 @@
       ],
       "matrix": [
         {
-          "wacc": 0.0356,
+          "wacc": 0.0841,
           "values": {
-            "0.015": 7332.34,
-            "0.02": 9512.26,
-            "0.025": 13748.71,
-            "0.03": 25550.25,
-            "0.035": 234044.1
+            "0.015": 317.75,
+            "0.02": 338.15,
+            "0.025": 362.01,
+            "0.03": 390.27,
+            "0.035": 424.28
           }
         },
         {
-          "wacc": 0.0456,
+          "wacc": 0.0941,
           "values": {
-            "0.015": 4924.08,
-            "0.02": 5784.63,
-            "0.025": 7062.93,
-            "0.03": 9160.65,
-            "0.035": 13237.34
+            "0.015": 274.85,
+            "0.02": 289.71,
+            "0.025": 306.72,
+            "0.03": 326.39,
+            "0.035": 349.38
           }
         },
         {
-          "wacc": 0.0556,
+          "wacc": 0.1041,
           "values": {
-            "0.015": 3702.35,
-            "0.02": 4151.33,
-            "0.025": 4747.04,
-            "0.03": 5575.44,
-            "0.035": 6805.98
+            "0.015": 241.6,
+            "0.02": 252.81,
+            "0.025": 265.44,
+            "0.03": 279.76,
+            "0.035": 296.17
           }
         },
         {
-          "wacc": 0.0656,
+          "wacc": 0.1141,
           "values": {
-            "0.015": 2963.67,
-            "0.02": 3234.51,
-            "0.025": 3572.05,
-            "0.03": 4004.42,
-            "0.035": 4578.07
+            "0.015": 215.09,
+            "0.02": 223.77,
+            "0.025": 233.44,
+            "0.03": 244.25,
+            "0.035": 256.42
           }
         },
         {
-          "wacc": 0.0756,
+          "wacc": 0.1241,
           "values": {
-            "0.015": 2468.9,
-            "0.02": 2647.57,
-            "0.025": 2861.55,
-            "0.03": 3122.45,
-            "0.035": 3447.62
+            "0.015": 193.45,
+            "0.02": 200.33,
+            "0.025": 207.91,
+            "0.03": 216.29,
+            "0.035": 225.61
           }
         }
       ]
     },
     "value_range": {
-      "low": 3596.38,
-      "mid": 4171.71,
-      "high": 4747.04
+      "low": 265.44,
+      "mid": 514.78,
+      "high": 764.12
     },
     "warnings": []
   },
@@ -361,168 +410,168 @@
     "method": "CCA",
     "peer_details": [
       {
-        "ticker": "INFY.NS",
-        "company_name": "Infosys Limited",
-        "ev_ebitda": 1032.26,
-        "ev_revenue": 271.22,
-        "pe_ratio": 1656.2,
-        "pb_ratio": 466.78
+        "ticker": "PEER1",
+        "company_name": "Synthetic PEER1 Corp",
+        "ev_ebitda": 30.89,
+        "ev_revenue": 8.65,
+        "pe_ratio": 47.73,
+        "pb_ratio": 5.21
       },
       {
-        "ticker": "WIPRO.NS",
-        "company_name": "Wipro Limited",
-        "ev_ebitda": 10.37,
-        "ev_revenue": 2.49,
-        "pe_ratio": 16.34,
-        "pb_ratio": 2.59
+        "ticker": "PEER2",
+        "company_name": "Synthetic PEER2 Corp",
+        "ev_ebitda": 97.2,
+        "ev_revenue": 29.36,
+        "pe_ratio": 175.14,
+        "pb_ratio": 13.24
       },
       {
-        "ticker": "HCLTECH.NS",
-        "company_name": "HCL Technologies Limited",
-        "ev_ebitda": 13.96,
-        "ev_revenue": 3.34,
-        "pe_ratio": 22.58,
-        "pb_ratio": 5.64
+        "ticker": "PEER3",
+        "company_name": "Synthetic PEER3 Corp",
+        "ev_ebitda": 17.14,
+        "ev_revenue": 5.34,
+        "pe_ratio": 32.14,
+        "pb_ratio": 3.79
       },
       {
-        "ticker": "TECHM.NS",
-        "company_name": "Tech Mahindra Limited",
-        "ev_ebitda": 16.0,
-        "ev_revenue": 2.36,
-        "pe_ratio": 30.0,
-        "pb_ratio": 4.66
+        "ticker": "PEER4",
+        "company_name": "Synthetic PEER4 Corp",
+        "ev_ebitda": 14.09,
+        "ev_revenue": 5.16,
+        "pe_ratio": 23.42,
+        "pb_ratio": 3.17
       }
     ],
     "multiple_stats": {
       "ev_ebitda": {
         "values": [
-          10.37,
-          13.96,
-          16.0,
-          1032.26
+          14.09,
+          17.14,
+          30.89,
+          97.2
         ],
-        "min": 10.37,
-        "max": 1032.26,
-        "mean": 268.15,
-        "median": 16.0,
+        "min": 14.09,
+        "max": 97.2,
+        "mean": 39.83,
+        "median": 30.89,
         "count": 4
       },
       "ev_revenue": {
         "values": [
-          2.36,
-          2.49,
-          3.34,
-          271.22
+          5.16,
+          5.34,
+          8.65,
+          29.36
         ],
-        "min": 2.36,
-        "max": 271.22,
-        "mean": 69.85,
-        "median": 3.34,
+        "min": 5.16,
+        "max": 29.36,
+        "mean": 12.13,
+        "median": 8.65,
         "count": 4
       },
       "pe_ratio": {
         "values": [
-          16.34,
-          22.58,
-          30.0,
-          1656.2
+          23.42,
+          32.14,
+          47.73,
+          175.14
         ],
-        "min": 16.34,
-        "max": 1656.2,
-        "mean": 431.28,
-        "median": 30.0,
+        "min": 23.42,
+        "max": 175.14,
+        "mean": 69.61,
+        "median": 47.73,
         "count": 4
       },
       "pb_ratio": {
         "values": [
-          2.59,
-          4.66,
-          5.64,
-          466.78
+          3.17,
+          3.79,
+          5.21,
+          13.24
         ],
-        "min": 2.59,
-        "max": 466.78,
-        "mean": 119.92,
-        "median": 5.64,
+        "min": 3.17,
+        "max": 13.24,
+        "mean": 6.35,
+        "median": 5.21,
         "count": 4
       }
     },
     "implied_values": {
       "ev_ebitda": {
         "min": {
-          "multiple": 10.37,
-          "implied_ev": 7494813800000.0,
-          "implied_equity": 7446153800000.0,
-          "implied_price": 2058.04
+          "multiple": 14.09,
+          "implied_ev": 2288018146652.06,
+          "implied_equity": 2191658022434.54,
+          "implied_price": 319.31
         },
         "median": {
-          "multiple": 16.0,
-          "implied_ev": 11563840000000.0,
-          "implied_equity": 11515180000000.0,
-          "implied_price": 3182.67
+          "multiple": 30.89,
+          "implied_ev": 5016102239182.56,
+          "implied_equity": 4919742114965.04,
+          "implied_price": 716.77
         },
         "max": {
-          "multiple": 1032.26,
-          "implied_ev": 746055592400000.0,
-          "implied_equity": 746006932400000.0,
-          "implied_price": 206188.19
+          "multiple": 97.2,
+          "implied_ev": 15783915106783.58,
+          "implied_equity": 15687554982566.06,
+          "implied_price": 2285.57
         }
       },
       "ev_revenue": {
         "min": {
-          "multiple": 2.36,
-          "implied_ev": 6301695600000.0,
-          "implied_equity": 6253035600000.0,
-          "implied_price": 1728.27
+          "multiple": 5.16,
+          "implied_ev": 2882223757034.75,
+          "implied_equity": 2785863632817.23,
+          "implied_price": 405.88
         },
         "median": {
-          "multiple": 3.34,
-          "implied_ev": 8918501400000.0,
-          "implied_equity": 8869841400000.0,
-          "implied_price": 2451.53
+          "multiple": 8.65,
+          "implied_ev": 4831634786502.05,
+          "implied_equity": 4735274662284.53,
+          "implied_price": 689.9
         },
         "max": {
-          "multiple": 271.22,
-          "implied_ev": 724214356200000.1,
-          "implied_equity": 724165696200000.1,
-          "implied_price": 200151.51
+          "multiple": 29.36,
+          "implied_ev": 16399629749329.5,
+          "implied_equity": 16303269625111.98,
+          "implied_price": 2375.28
         }
       },
       "pe_ratio": {
         "min": {
-          "multiple": 16.34,
-          "implied_price": 2222.4
+          "multiple": 23.42,
+          "implied_price": 359.97
         },
         "median": {
-          "multiple": 30.0,
-          "implied_price": 4080.3
+          "multiple": 47.73,
+          "implied_price": 733.61
         },
         "max": {
-          "multiple": 1656.2,
-          "implied_price": 225259.76
+          "multiple": 175.14,
+          "implied_price": 2691.9
         }
       },
       "pb_ratio": {
         "min": {
-          "multiple": 2.59,
-          "implied_price": 767.68
+          "multiple": 3.17,
+          "implied_price": 386.96
         },
         "median": {
-          "multiple": 5.64,
-          "implied_price": 1671.7
+          "multiple": 5.21,
+          "implied_price": 635.98
         },
         "max": {
-          "multiple": 466.78,
-          "implied_price": 138353.59
+          "multiple": 13.24,
+          "implied_price": 1616.21
         }
       }
     },
     "value_range": {
-      "low": 1975.59,
-      "mid": 2817.1,
-      "high": 153803.07,
-      "full_min": 767.68,
-      "full_max": 225259.76
+      "low": 401.15,
+      "mid": 703.34,
+      "high": 1783.55,
+      "full_min": 319.31,
+      "full_max": 2691.9
     },
     "warnings": []
   },
@@ -530,219 +579,137 @@
     "method": "Precedent Transactions",
     "transactions": [
       {
-        "transaction_date": "2023-10-28",
-        "target_name": "Activision Blizzard",
-        "acquirer_name": "Microsoft",
+        "transaction_date": "2020-12-13",
+        "target_name": "Synthetic Target 1",
+        "acquirer_name": "Synthetic Acquirer 1",
         "sector": "Technology",
-        "deal_value": 68700000000,
-        "target_revenue": 8700000000,
-        "target_ebitda": 3400000000,
-        "ev_revenue_multiple": 7.9,
-        "ev_ebitda_multiple": 20.2,
-        "premium_paid": 45.0
+        "deal_value": 379891655604.0,
+        "target_revenue": 55336678478.25,
+        "target_ebitda": 15921554434.39,
+        "ev_revenue_multiple": 6.87,
+        "ev_ebitda_multiple": 23.86,
+        "premium_paid": 30.5
       },
       {
-        "transaction_date": "2023-05-26",
-        "target_name": "VMware",
-        "acquirer_name": "Broadcom",
+        "transaction_date": "2021-07-04",
+        "target_name": "Synthetic Target 2",
+        "acquirer_name": "Synthetic Acquirer 2",
         "sector": "Technology",
-        "deal_value": 61000000000,
-        "target_revenue": 13350000000,
-        "target_ebitda": 4800000000,
-        "ev_revenue_multiple": 4.6,
-        "ev_ebitda_multiple": 12.7,
-        "premium_paid": 48.0
+        "deal_value": 278464857594.08,
+        "target_revenue": 37278395885.94,
+        "target_ebitda": 11812690190.57,
+        "ev_revenue_multiple": 7.47,
+        "ev_ebitda_multiple": 23.57,
+        "premium_paid": 49.9
       },
       {
-        "transaction_date": "2022-04-25",
-        "target_name": "Twitter",
-        "acquirer_name": "X Holdings",
+        "transaction_date": "2022-01-03",
+        "target_name": "Synthetic Target 3",
+        "acquirer_name": "Synthetic Acquirer 3",
         "sector": "Technology",
-        "deal_value": 44000000000,
-        "target_revenue": 5080000000,
-        "target_ebitda": 800000000,
-        "ev_revenue_multiple": 8.7,
-        "ev_ebitda_multiple": 55.0,
-        "premium_paid": 38.0
+        "deal_value": 353559789879.1,
+        "target_revenue": 105685202880.47,
+        "target_ebitda": 33841859866.41,
+        "ev_revenue_multiple": 3.35,
+        "ev_ebitda_multiple": 10.45,
+        "premium_paid": 50.0
       },
       {
-        "transaction_date": "2021-12-20",
-        "target_name": "Citrix Systems",
-        "acquirer_name": "Vista Equity / Elliott",
+        "transaction_date": "2023-09-26",
+        "target_name": "Synthetic Target 4",
+        "acquirer_name": "Synthetic Acquirer 4",
         "sector": "Technology",
-        "deal_value": 16500000000,
-        "target_revenue": 3220000000,
-        "target_ebitda": 1100000000,
-        "ev_revenue_multiple": 5.1,
-        "ev_ebitda_multiple": 15.0,
-        "premium_paid": 30.0
+        "deal_value": 460261665871.75,
+        "target_revenue": 80383641228.62,
+        "target_ebitda": 22139780428.75,
+        "ev_revenue_multiple": 5.73,
+        "ev_ebitda_multiple": 20.79,
+        "premium_paid": 16.0
       },
       {
-        "transaction_date": "2024-03-25",
-        "target_name": "Juniper Networks",
-        "acquirer_name": "HPE",
+        "transaction_date": "2024-10-06",
+        "target_name": "Synthetic Target 5",
+        "acquirer_name": "Synthetic Acquirer 5",
         "sector": "Technology",
-        "deal_value": 14000000000,
-        "target_revenue": 5570000000,
-        "target_ebitda": 900000000,
-        "ev_revenue_multiple": 2.5,
-        "ev_ebitda_multiple": 15.6,
-        "premium_paid": 32.0
-      },
-      {
-        "transaction_date": "2024-08-02",
-        "target_name": "HashiCorp",
-        "acquirer_name": "IBM",
-        "sector": "Technology",
-        "deal_value": 6400000000,
-        "target_revenue": 583000000,
-        "target_ebitda": 50000000,
-        "ev_revenue_multiple": 11.0,
-        "ev_ebitda_multiple": 128.0,
-        "premium_paid": 42.0
-      },
-      {
-        "transaction_date": "2023-09-21",
-        "target_name": "Splunk",
-        "acquirer_name": "Cisco",
-        "sector": "Technology",
-        "deal_value": 28000000000,
-        "target_revenue": 3650000000,
-        "target_ebitda": 400000000,
-        "ev_revenue_multiple": 7.7,
-        "ev_ebitda_multiple": 70.0,
-        "premium_paid": 31.0
-      },
-      {
-        "transaction_date": "2020-12-01",
-        "target_name": "Slack",
-        "acquirer_name": "Salesforce",
-        "sector": "Technology",
-        "deal_value": 27700000000,
-        "target_revenue": 900000000,
-        "target_ebitda": null,
-        "ev_revenue_multiple": 30.8,
-        "ev_ebitda_multiple": null,
-        "premium_paid": 55.0
-      },
-      {
-        "transaction_date": "2024-01-16",
-        "target_name": "Ansys",
-        "acquirer_name": "Synopsys",
-        "sector": "Technology",
-        "deal_value": 35000000000,
-        "target_revenue": 2270000000,
-        "target_ebitda": 1050000000,
-        "ev_revenue_multiple": 15.4,
-        "ev_ebitda_multiple": 33.3,
-        "premium_paid": 29.0
-      },
-      {
-        "transaction_date": "2025-07-30",
-        "target_name": "CyberArk",
-        "acquirer_name": "Palo Alto Networks",
-        "sector": "Technology",
-        "deal_value": 25000000000,
-        "target_revenue": 950000000,
-        "target_ebitda": 120000000,
-        "ev_revenue_multiple": 26.3,
-        "ev_ebitda_multiple": 208.3,
-        "premium_paid": 24.0
-      },
-      {
-        "transaction_date": "2025-03-18",
-        "target_name": "Wiz",
-        "acquirer_name": "Alphabet",
-        "sector": "Technology",
-        "deal_value": 32000000000,
-        "target_revenue": 700000000,
-        "target_ebitda": null,
-        "ev_revenue_multiple": 45.7,
-        "ev_ebitda_multiple": null,
-        "premium_paid": null
+        "deal_value": 72981895469.22,
+        "target_revenue": 30038124877.88,
+        "target_ebitda": 9510252861.25,
+        "ev_revenue_multiple": 2.43,
+        "ev_ebitda_multiple": 7.67,
+        "premium_paid": 46.9
       }
     ],
     "transaction_multiples": {
       "ev_revenue": {
         "values": [
-          2.5,
-          4.6,
-          5.1,
-          7.7,
-          7.9,
-          8.7,
-          11.0,
-          15.4,
-          26.3,
-          30.8,
-          45.7
+          2.43,
+          3.35,
+          5.73,
+          6.87,
+          7.47
         ],
-        "median": 8.7
+        "median": 5.73
       },
       "ev_ebitda": {
         "values": [
-          12.7,
-          15.0,
-          15.6,
-          20.2,
-          33.3,
-          55.0,
-          70.0,
-          128.0,
-          208.3
+          7.67,
+          10.45,
+          20.79,
+          23.57,
+          23.86
         ],
-        "median": 33.3
+        "median": 20.79
       }
     },
-    "average_control_premium_pct": 37.4,
+    "average_control_premium_pct": 38.7,
     "implied_values": {
       "ev_revenue_txn": {
         "min": {
-          "multiple": 2.5,
-          "implied_ev": 6675525000000.0,
-          "implied_equity": 6626865000000.0,
-          "implied_price": 1831.59
+          "multiple": 2.43,
+          "implied_ev": 1357326304184.97,
+          "implied_equity": 1260966179967.45,
+          "implied_price": 183.71
         },
         "median": {
-          "multiple": 8.7,
-          "implied_ev": 23230827000000.0,
-          "implied_equity": 23182167000000.0,
-          "implied_price": 6407.3
+          "multiple": 5.73,
+          "implied_ev": 3200608939497.89,
+          "implied_equity": 3104248815280.37,
+          "implied_price": 452.27
         },
         "max": {
-          "multiple": 45.7,
-          "implied_ev": 122028597000000.0,
-          "implied_equity": 121979937000000.0,
-          "implied_price": 33713.93
+          "multiple": 7.47,
+          "implied_ev": 4172521601753.79,
+          "implied_equity": 4076161477536.27,
+          "implied_price": 593.87
         }
       },
       "ev_ebitda_txn": {
         "min": {
-          "multiple": 12.7,
-          "implied_ev": 9178798000000.0,
-          "implied_equity": 9130138000000.0,
-          "implied_price": 2523.47
+          "multiple": 7.67,
+          "implied_ev": 1245500297006.48,
+          "implied_equity": 1149140172788.96,
+          "implied_price": 167.42
         },
         "median": {
-          "multiple": 33.3,
-          "implied_ev": 24067242000000.0,
-          "implied_equity": 24018582000000.0,
-          "implied_price": 6638.47
+          "multiple": 20.79,
+          "implied_ev": 3376004064506.49,
+          "implied_equity": 3279643940288.97,
+          "implied_price": 477.82
         },
         "max": {
-          "multiple": 208.3,
-          "implied_ev": 150546742000000.0,
-          "implied_equity": 150498082000000.0,
-          "implied_price": 41596.03
+          "multiple": 23.86,
+          "implied_ev": 3874528955224.86,
+          "implied_equity": 3778168831007.34,
+          "implied_price": 550.45
         }
       }
     },
     "value_range": {
-      "low": 3494.43,
-      "mid": 6522.89,
-      "high": 26945.06,
-      "full_min": 1831.59,
-      "full_max": 41596.03
+      "low": 250.85,
+      "mid": 465.04,
+      "high": 532.3,
+      "full_min": 167.42,
+      "full_max": 593.87
     },
     "warnings": []
   },
@@ -750,39 +717,39 @@
     "method_summary": [
       {
         "method": "DCF",
-        "low": 3596.38,
-        "mid": 4171.71,
-        "high": 4747.04
+        "low": 265.44,
+        "mid": 514.78,
+        "high": 764.12
       },
       {
         "method": "CCA",
-        "low": 1975.59,
-        "mid": 2817.1,
-        "high": 153803.07
+        "low": 401.15,
+        "mid": 703.34,
+        "high": 1783.55
       },
       {
         "method": "Precedent Transactions",
-        "low": 3494.43,
-        "mid": 6522.89,
-        "high": 26945.06
+        "low": 250.85,
+        "mid": 465.04,
+        "high": 532.3
       }
     ],
     "overall_range": {
-      "low": 1975.59,
-      "mid": 4503.9,
-      "high": 153803.07
+      "low": 250.85,
+      "mid": 561.05,
+      "high": 1783.55
     },
     "recommended_range": {
-      "low": 3494.4,
-      "high": 5347.3
+      "low": 489.91,
+      "high": 609.06
     },
-    "current_price": 2524.3,
-    "implied_upside_pct": 78.4,
-    "verdict": "UNDERVALUED",
+    "current_price": 476.86,
+    "implied_upside_pct": 17.7,
+    "verdict": "SLIGHTLY UNDERVALUED",
     "recommendation": "BUY",
     "confidence": "LOW",
-    "confidence_note": "Methods diverge by 132%. Significant uncertainty \u2014 review key assumptions.",
-    "divergence_pct": 131.5,
+    "confidence_note": "Methods diverge by 51%. Significant uncertainty \u2014 review key assumptions.",
+    "divergence_pct": 51.2,
     "all_warnings": []
   }
 }
