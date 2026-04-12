@@ -66,26 +66,10 @@
 <h2>2. Pipeline Architecture & Design Decisions</h2>
 
 <h3>Architecture Overview</h3>
-<div class="diagram">
-┌──────────────┐   ┌──────────────┐   ┌──────────────────────┐
-│  fetch_data  │──▶│  validate_   │──▶│  feature_engineering  │
-│    .py       │   │   data.py    │   │       .py             │
-│              │   │              │   │                       │
-│ Yahoo Finance│   │ Profile data │   │ Ratios, WACC, FCF     │
-│ + MCP + Synth│   │ Reject if bad│   │ projections, peer     │
-│ data fallback│   │              │   │ multiples             │
-└──────────────┘   └──────────────┘   └───────────┬───────────┘
-                                                   │
-                                                   ▼
-┌──────────────┐   ┌──────────────────────────────────────────┐
-│  generate_   │◀──│           run_models.py                  │
-│  report.py   │   │                                          │
-│              │   │  DCF (Gordon + Exit Multiple)             │
-│ HTML + PDF   │   │  CCA (4 peer multiples)                  │
-│ 12 sections  │   │  Precedent Transactions (M&A multiples)  │
-│ 3 charts     │   │  Cross-validation + verdict              │
-└──────────────┘   └──────────────────────────────────────────┘
-</div>
+
+<p>The following diagram illustrates the pipeline architecture, showing the data flow from acquisition through validation, feature engineering, modeling, and final report generation:</p>
+
+<img src="attachment:image.png" alt="Pipeline Architecture Diagram" style="max-width: 100%; border: 1px solid var(--border); border-radius: 8px; margin: 16px 0;" />
 
 <h3>Key Design Decisions</h3>
 

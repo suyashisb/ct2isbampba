@@ -1,0 +1,1231 @@
+{
+  "status": "PASS",
+  "summary": {
+    "status": "PASS",
+    "target": "Tata Consultancy Services Limited (TCS.NS)",
+    "target_years": 4,
+    "peer_count": 4,
+    "transaction_count": 11,
+    "errors": 0,
+    "warnings": 0
+  },
+  "target_profile": {
+    "label": "Tata Consultancy Services Limited (TCS.NS)",
+    "row_count": 4,
+    "years_covered": [
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "year_range": "2023\u20132026",
+    "year_count": 4,
+    "columns": {
+      "beta": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 0.27,
+        "max": 0.27,
+        "mean": 0.27,
+        "median": 0.27
+      },
+      "capex": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 26740000000.0,
+        "max": 41870000000.0,
+        "mean": 34745000000.0,
+        "median": 39370000000.0
+      },
+      "cash_and_equivalents": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 64170000000.0,
+        "max": 90070000000.0,
+        "mean": 77175000000.0,
+        "median": 83310000000.0
+      },
+      "company_name": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "categorical",
+        "unique_values": 1,
+        "sample_values": [
+          "Tata Consultancy Services Limited"
+        ]
+      },
+      "cost_of_revenue": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 1197590000000.0,
+        "max": 1593930000000.0,
+        "mean": 1423647500000.0,
+        "median": 1574360000000.0
+      },
+      "depreciation": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 49850000000.0,
+        "max": 55600000000.0,
+        "mean": 52022500000.0,
+        "median": 52420000000.0
+      },
+      "dividends_paid": {
+        "null_count": 4,
+        "null_pct": 100.0,
+        "non_null_count": 0,
+        "type": "categorical",
+        "unique_values": 0,
+        "sample_values": []
+      },
+      "ebitda": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 627080000000.0,
+        "max": 722740000000.0,
+        "mean": 685277500000.0,
+        "median": 713690000000.0
+      },
+      "fiscal_year": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 2023.0,
+        "max": 2026.0,
+        "mean": 2024.5,
+        "median": 2025.0
+      },
+      "interest_expense": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 7780000000.0,
+        "max": 12270000000.0,
+        "mean": 8950000000.0,
+        "median": 7960000000.0
+      },
+      "net_income": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 421470000000.0,
+        "max": 492100000000.0,
+        "mean": 464545000000.0,
+        "median": 485530000000.0
+      },
+      "operating_cash_flow": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 419650000000.0,
+        "max": 520940000000.0,
+        "mean": 468262500000.0,
+        "median": 489080000000.0
+      },
+      "operating_income": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 543770000000.0,
+        "max": 668380000000.0,
+        "mean": 607012500000.0,
+        "median": 621650000000.0
+      },
+      "revenue": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 2254580000000.0,
+        "max": 2670210000000.0,
+        "mean": 2471740000000.0,
+        "median": 2553240000000.0
+      },
+      "sector": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "categorical",
+        "unique_values": 1,
+        "sample_values": [
+          "Technology"
+        ]
+      },
+      "shares_outstanding": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 3618087518.0,
+        "max": 3618087518.0,
+        "mean": 3618087518.0,
+        "median": 3618087518.0
+      },
+      "stock_price": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 2524.3,
+        "max": 2524.3,
+        "mean": 2524.3,
+        "median": 2524.3
+      },
+      "tax_provision": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 146040000000.0,
+        "max": 165340000000.0,
+        "mean": 157672500000.0,
+        "median": 160330000000.0
+      },
+      "ticker": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "categorical",
+        "unique_values": 1,
+        "sample_values": [
+          "TCS.NS"
+        ]
+      },
+      "total_assets": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 1436510000000.0,
+        "max": 1823720000000.0,
+        "mean": 1580252500000.0,
+        "median": 1596290000000.0
+      },
+      "total_debt": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 76880000000.0,
+        "max": 112830000000.0,
+        "mean": 90960000000.0,
+        "median": 93920000000.0
+      },
+      "total_equity": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 904240000000.0,
+        "max": 1072400000000.0,
+        "mean": 957272500000.0,
+        "median": 947560000000.0
+      },
+      "total_liabilities": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 4,
+        "type": "numeric",
+        "min": 524450000000.0,
+        "max": 738940000000.0,
+        "mean": 613317500000.0,
+        "median": 638580000000.0
+      }
+    }
+  },
+  "peer_profiles": [
+    {
+      "label": "Infosys Limited (INFY.NS)",
+      "row_count": 4,
+      "years_covered": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2022\u20132025",
+      "year_count": 4,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 0.2,
+          "max": 0.2,
+          "mean": 0.2,
+          "median": 0.2
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 263000000.0,
+          "max": 319000000.0,
+          "mean": 284500000.0,
+          "median": 290000000.0
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 1481000000.0,
+          "max": 2861000000.0,
+          "mean": 2105000000.0,
+          "median": 2305000000.0
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Infosys Limited"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 10996000000.0,
+          "max": 13405000000.0,
+          "mean": 12521250000.0,
+          "median": 12975000000.0
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 466000000.0,
+          "max": 569000000.0,
+          "mean": 531000000.0,
+          "median": 565000000.0
+        },
+        "dividends_paid": {
+          "null_count": 2,
+          "null_pct": 50.0,
+          "non_null_count": 2,
+          "type": "numeric",
+          "min": 1697000000.0,
+          "max": 1703000000.0,
+          "mean": 1700000000.0,
+          "median": 1703000000.0
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 4529000000.0,
+          "max": 5065000000.0,
+          "mean": 4811250000.0,
+          "median": 4967000000.0
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 2022.0,
+          "max": 2025.0,
+          "mean": 2023.5,
+          "median": 2024.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 27000000.0,
+          "max": 56000000.0,
+          "mean": 41750000.0,
+          "median": 49000000.0
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 2963000000.0,
+          "max": 3167000000.0,
+          "mean": 3067250000.0,
+          "median": 3158000000.0
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 2853000000.0,
+          "max": 4351000000.0,
+          "mean": 3424250000.0,
+          "median": 3345000000.0
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 3755000000.0,
+          "max": 4077000000.0,
+          "mean": 3876500000.0,
+          "median": 3849000000.0
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 16311000000.0,
+          "max": 19277000000.0,
+          "mean": 18090500000.0,
+          "median": 18562000000.0
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 4046638943.0,
+          "max": 4046638943.0,
+          "mean": 4046638943.0,
+          "median": 4046638943.0
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 1292.5,
+          "max": 1292.5,
+          "mean": 1292.5,
+          "median": 1292.5
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 1068000000.0,
+          "max": 1285000000.0,
+          "mean": 1168000000.0,
+          "median": 1177000000.0
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "INFY.NS"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 15312000000.0,
+          "max": 17419000000.0,
+          "mean": 16202250000.0,
+          "median": 16523000000.0
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 722000000.0,
+          "max": 1010000000.0,
+          "mean": 924000000.0,
+          "median": 1002000000.0
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 9172000000.0,
+          "max": 11205000000.0,
+          "mean": 10219250000.0,
+          "median": 10559000000.0
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 5561000000.0,
+          "max": 6164000000.0,
+          "mean": 5932750000.0,
+          "median": 6088000000.0
+        }
+      }
+    },
+    {
+      "label": "Wipro Limited (WIPRO.NS)",
+      "row_count": 4,
+      "years_covered": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2022\u20132025",
+      "year_count": 4,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 0.38,
+          "max": 0.38,
+          "mean": 0.38,
+          "median": 0.38
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 10510000000.0,
+          "max": 20153000000.0,
+          "mean": 15133500000.0,
+          "median": 15037000000.0
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 91880000000.0,
+          "max": 121974000000.0,
+          "mean": 103660750000.0,
+          "median": 103836000000.0
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Wipro Limited"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 555872000000.0,
+          "max": 645446000000.0,
+          "mean": 612654250000.0,
+          "median": 631497000000.0
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 29579000000.0,
+          "max": 34071000000.0,
+          "mean": 31990750000.0,
+          "median": 33402000000.0
+        },
+        "dividends_paid": {
+          "null_count": 3,
+          "null_pct": 75.0,
+          "non_null_count": 1,
+          "type": "numeric",
+          "min": 5467000000.0,
+          "max": 5467000000.0,
+          "mean": 5467000000.0,
+          "median": 5467000000.0
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 187511000000.0,
+          "max": 213783000000.0,
+          "mean": 194929500000.0,
+          "median": 189541000000.0
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 2022.0,
+          "max": 2025.0,
+          "mean": 2023.5,
+          "median": 2024.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 5325000000.0,
+          "max": 9247000000.0,
+          "mean": 7664000000.0,
+          "median": 8260000000.0
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 110452000000.0,
+          "max": 131354000000.0,
+          "mean": 119374250000.0,
+          "median": 122191000000.0
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 110797000000.0,
+          "max": 176216000000.0,
+          "mean": 146760000000.0,
+          "median": 169426000000.0
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 133730000000.0,
+          "max": 150686000000.0,
+          "mean": 138870250000.0,
+          "median": 135931000000.0
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 790934000000.0,
+          "max": 904876000000.0,
+          "mean": 871074250000.0,
+          "median": 897603000000.0
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 10477019810.0,
+          "max": 10477019810.0,
+          "mean": 10477019810.0,
+          "median": 10477019810.0
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 204.88,
+          "max": 204.88,
+          "mean": 204.88,
+          "median": 204.88
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 28946000000.0,
+          "max": 42777000000.0,
+          "mean": 35451000000.0,
+          "median": 36089000000.0
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "WIPRO.NS"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 1079182000000.0,
+          "max": 1286520000000.0,
+          "mean": 1173495750000.0,
+          "median": 1175822000000.0
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 164649000000.0,
+          "max": 192035000000.0,
+          "mean": 176819750000.0,
+          "median": 175929000000.0
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 658158000000.0,
+          "max": 828309000000.0,
+          "mean": 754378500000.0,
+          "median": 781164000000.0
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 394069000000.0,
+          "max": 456073000000.0,
+          "mean": 417971750000.0,
+          "median": 420509000000.0
+        }
+      }
+    },
+    {
+      "label": "HCL Technologies Limited (HCLTECH.NS)",
+      "row_count": 4,
+      "years_covered": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2022\u20132025",
+      "year_count": 4,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 0.17,
+          "max": 0.17,
+          "mean": 0.17,
+          "median": 0.17
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 10480000000.0,
+          "max": 16610000000.0,
+          "mean": 13655000000.0,
+          "median": 16450000000.0
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 82260000000.0,
+          "max": 105020000000.0,
+          "mean": 93065000000.0,
+          "median": 94410000000.0
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "HCL Technologies Limited"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 475360000000.0,
+          "max": 698340000000.0,
+          "mean": 601642500000.0,
+          "median": 649650000000.0
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 40840000000.0,
+          "max": 43260000000.0,
+          "mean": 41820000000.0,
+          "median": 41730000000.0
+        },
+        "dividends_paid": {
+          "null_count": 4,
+          "null_pct": 100.0,
+          "non_null_count": 0,
+          "type": "categorical",
+          "unique_values": 0,
+          "sample_values": []
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 215960000000.0,
+          "max": 279890000000.0,
+          "mean": 248160000000.0,
+          "median": 256930000000.0
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 2022.0,
+          "max": 2025.0,
+          "mean": 2023.5,
+          "median": 2024.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 3190000000.0,
+          "max": 6440000000.0,
+          "mean": 4672500000.0,
+          "median": 5530000000.0
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 134990000000.0,
+          "max": 173900000000.0,
+          "mean": 153605000000.0,
+          "median": 157020000000.0
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 169000000000.0,
+          "max": 224480000000.0,
+          "mean": 199045000000.0,
+          "median": 222610000000.0
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 287190000000.0,
+          "max": 365820000000.0,
+          "mean": 333347500000.0,
+          "median": 346050000000.0
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 856510000000.0,
+          "max": 1170550000000.0,
+          "mean": 1035187500000.0,
+          "median": 1099130000000.0
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 2705652444.0,
+          "max": 2705652444.0,
+          "mean": 2705652444.0,
+          "median": 2705652444.0
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 1451.2,
+          "max": 1451.2,
+          "mean": 1451.2,
+          "median": 1451.2
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 34280000000.0,
+          "max": 58620000000.0,
+          "mean": 47975000000.0,
+          "median": 52570000000.0
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "HCLTECH.NS"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 890330000000.0,
+          "max": 1055440000000.0,
+          "mean": 969412500000.0,
+          "median": 997770000000.0
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 47860000000.0,
+          "max": 63430000000.0,
+          "mean": 57910000000.0,
+          "median": 62790000000.0
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 619140000000.0,
+          "max": 696550000000.0,
+          "mean": 663092500000.0,
+          "median": 682630000000.0
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 270270000000.0,
+          "max": 358710000000.0,
+          "mean": 306042500000.0,
+          "median": 315060000000.0
+        }
+      }
+    },
+    {
+      "label": "Tech Mahindra Limited (TECHM.NS)",
+      "row_count": 4,
+      "years_covered": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2022\u20132025",
+      "year_count": 4,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 0.14,
+          "max": 0.14,
+          "mean": 0.14,
+          "median": 0.14
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 5935000000.0,
+          "max": 10152000000.0,
+          "mean": 8395500000.0,
+          "median": 9584000000.0
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 37889000000.0,
+          "max": 43471000000.0,
+          "mean": 41277000000.0,
+          "median": 43185000000.0
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Tech Mahindra Limited"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 313347000000.0,
+          "max": 390276000000.0,
+          "mean": 369753500000.0,
+          "median": 388201000000.0
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 15204000000.0,
+          "max": 19567000000.0,
+          "mean": 17867750000.0,
+          "median": 18529000000.0
+        },
+        "dividends_paid": {
+          "null_count": 4,
+          "null_pct": 100.0,
+          "non_null_count": 0,
+          "type": "categorical",
+          "unique_values": 0,
+          "sample_values": []
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 54337000000.0,
+          "max": 91351000000.0,
+          "mean": 77811000000.0,
+          "median": 87278000000.0
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 2022.0,
+          "max": 2025.0,
+          "mean": 2023.5,
+          "median": 2024.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 1626000000.0,
+          "max": 3922000000.0,
+          "mean": 3005250000.0,
+          "median": 3256000000.0
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 23578000000.0,
+          "max": 55661000000.0,
+          "mean": 42516750000.0,
+          "median": 48313000000.0
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 52853000000.0,
+          "max": 63764000000.0,
+          "mean": 57548500000.0,
+          "median": 57857000000.0
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 34223000000.0,
+          "max": 65629000000.0,
+          "mean": 53505750000.0,
+          "median": 62496000000.0
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 446460000000.0,
+          "max": 532902000000.0,
+          "mean": 507300250000.0,
+          "median": 529883000000.0
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 885605623.0,
+          "max": 885605623.0,
+          "mean": 885605623.0,
+          "median": 885605623.0
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 1440.2,
+          "max": 1440.2,
+          "mean": 1440.2,
+          "median": 1440.2
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 8276000000.0,
+          "max": 18220000000.0,
+          "mean": 14095750000.0,
+          "median": 15885000000.0
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "TECHM.NS"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 434236000000.0,
+          "max": 461533000000.0,
+          "mean": 447355250000.0,
+          "median": 448707000000.0
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 20252000000.0,
+          "max": 27402000000.0,
+          "mean": 24801250000.0,
+          "median": 26184000000.0
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 266694000000.0,
+          "max": 279245000000.0,
+          "mean": 272102750000.0,
+          "median": 273615000000.0
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 4,
+          "type": "numeric",
+          "min": 162768000000.0,
+          "max": 177586000000.0,
+          "mean": 170569500000.0,
+          "median": 174896000000.0
+        }
+      }
+    }
+  ],
+  "issues": [],
+  "error_count": 0,
+  "warning_count": 0
+}
