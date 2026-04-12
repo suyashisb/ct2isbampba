@@ -69,7 +69,69 @@
 
 <p>The following diagram illustrates the pipeline architecture, showing the data flow from acquisition through validation, feature engineering, modeling, and final report generation:</p>
 
-<img src="attachment:image.png" alt="Pipeline Architecture Diagram" style="max-width: 100%; border: 1px solid var(--border); border-radius: 8px; margin: 16px 0;" />
+<div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; overflow-x: auto;">
+    <svg width="760" height="320" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
+        <!-- Definitions for arrows -->
+        <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d3748" />
+            </marker>
+        </defs>
+
+        <!-- Box 1: Fetch Data -->
+        <g transform="translate(10, 20)">
+            <rect width="210" height="80" rx="16" fill="#bbf7d0" stroke="#000" stroke-width="1.5" />
+            <text x="105" y="30" text-anchor="middle" font-size="13" fill="#2d3748">fetch_data.py (Yahoo</text>
+            <text x="105" y="48" text-anchor="middle" font-size="13" fill="#2d3748">Finance + MCP + Synth</text>
+            <text x="105" y="66" text-anchor="middle" font-size="13" fill="#2d3748">data fallback)</text>
+        </g>
+
+        <!-- Arrow 1 to 2 -->
+        <line x1="220" y1="60" x2="295" y2="60" stroke="#2d3748" stroke-width="1.5" marker-end="url(#arrow)" />
+
+        <!-- Box 2: Validate Data -->
+        <g transform="translate(305, 20)">
+            <rect width="180" height="80" rx="16" fill="#bbf7d0" stroke="#000" stroke-width="1.5" />
+            <text x="90" y="30" text-anchor="middle" font-size="13" fill="#2d3748">validate_data.py</text>
+            <text x="90" y="48" text-anchor="middle" font-size="13" fill="#2d3748">(Profile data + DQ</text>
+            <text x="90" y="66" text-anchor="middle" font-size="13" fill="#2d3748">Checks)</text>
+        </g>
+
+        <!-- Arrow 2 to 3 -->
+        <line x1="485" y1="60" x2="540" y2="60" stroke="#2d3748" stroke-width="1.5" marker-end="url(#arrow)" />
+
+        <!-- Box 3: Feature Engineering -->
+        <g transform="translate(550, 15)">
+            <rect width="200" height="90" rx="16" fill="#bbf7d0" stroke="#000" stroke-width="1.5" />
+            <text x="100" y="34" text-anchor="middle" font-size="13" fill="#2d3748">feature_engineering.py</text>
+            <text x="100" y="52" text-anchor="middle" font-size="13" fill="#2d3748">(Ratios, WACC, FCF</text>
+            <text x="100" y="70" text-anchor="middle" font-size="13" fill="#2d3748">projections, peer multiples)</text>
+        </g>
+
+        <!-- Curved Arrow 3 to 4 -->
+        <path d="M 650 105 C 650 140, 580 130, 580 180" fill="none" stroke="#2d3748" stroke-width="1.5" marker-end="url(#arrow)" />
+
+        <!-- Box 4: Run Models -->
+        <g transform="translate(400, 190)">
+            <rect width="350" height="110" rx="16" fill="#bbf7d0" stroke="#000" stroke-width="1.5" />
+            <text x="175" y="28" text-anchor="middle" font-size="13" fill="#2d3748">run_models.py</text>
+            <text x="175" y="46" text-anchor="middle" font-size="13" fill="#2d3748">DCF (Gordon + Exit Multiple)</text>
+            <text x="175" y="64" text-anchor="middle" font-size="13" fill="#2d3748">CCA (4 Peer)</text>
+            <text x="175" y="82" text-anchor="middle" font-size="13" fill="#2d3748">Precedent Transactions (M&amp;A multiples)</text>
+            <text x="175" y="100" text-anchor="middle" font-size="13" fill="#2d3748">Cross-Validation</text>
+        </g>
+
+        <!-- Arrow 4 to 5 -->
+        <line x1="400" y1="245" x2="260" y2="245" stroke="#2d3748" stroke-width="1.5" marker-end="url(#arrow)" />
+
+        <!-- Box 5: Generate Report -->
+        <g transform="translate(120, 195)">
+            <rect width="130" height="90" rx="16" fill="#bbf7d0" stroke="#000" stroke-width="1.5" />
+            <text x="65" y="38" text-anchor="middle" font-size="13" fill="#2d3748">generate_report.py</text>
+            <text x="65" y="70" text-anchor="middle" font-size="13" fill="#2d3748">HTML/PDF Report</text>
+        </g>
+    </svg>
+</div>
 
 <h3>Key Design Decisions</h3>
 
