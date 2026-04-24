@@ -1,0 +1,1242 @@
+{
+  "status": "PASS",
+  "summary": {
+    "status": "PASS",
+    "target": "Synthetic SYNTH Corp (SYNTH)",
+    "target_years": 5,
+    "peer_count": 4,
+    "transaction_count": 5,
+    "errors": 0,
+    "warnings": 0
+  },
+  "target_profile": {
+    "label": "Synthetic SYNTH Corp (SYNTH)",
+    "row_count": 5,
+    "years_covered": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "year_range": "2021\u20132025",
+    "year_count": 5,
+    "columns": {
+      "beta": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 0.85,
+        "max": 1.54,
+        "mean": 1.16,
+        "median": 1.09
+      },
+      "capex": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 19995340405.87,
+        "max": 28378440542.7,
+        "mean": 24038179274.84,
+        "median": 24905471005.66
+      },
+      "cash_and_equivalents": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 29656820552.89,
+        "max": 79433051683.49,
+        "mean": 59522447119.86,
+        "median": 67993646636.88
+      },
+      "company_name": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "categorical",
+        "unique_values": 1,
+        "sample_values": [
+          "Synthetic SYNTH Corp"
+        ]
+      },
+      "cost_of_revenue": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 158571393252.88,
+        "max": 273006035355.84,
+        "mean": 213517293700.5,
+        "median": 213008244620.08
+      },
+      "depreciation": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 17937204316.52,
+        "max": 40591403743.42,
+        "mean": 26174448864.61,
+        "median": 24499058308.17
+      },
+      "dividends_paid": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 8797439734.23,
+        "max": 17149185952.64,
+        "mean": 12469566579.76,
+        "median": 11876197680.0
+      },
+      "ebitda": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 86209655830.12,
+        "max": 162385957888.72,
+        "mean": 116918220002.03,
+        "median": 114531580976.15
+      },
+      "fiscal_year": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 2021.0,
+        "max": 2025.0,
+        "mean": 2023.0,
+        "median": 2023.0
+      },
+      "interest_expense": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 808109111.26,
+        "max": 1336128331.15,
+        "mean": 1070250570.96,
+        "median": 1081879976.94
+      },
+      "net_income": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 58656065913.48,
+        "max": 105515969612.32,
+        "mean": 79389813733.65,
+        "median": 76279762658.53
+      },
+      "operating_cash_flow": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 70634531358.66,
+        "max": 133446957341.23,
+        "mean": 104536585157.32,
+        "median": 108119558937.59
+      },
+      "operating_income": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 68272451513.61,
+        "max": 121794554145.3,
+        "mean": 90743771137.42,
+        "median": 84630503811.83
+      },
+      "revenue": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 310712639179.61,
+        "max": 558570495549.37,
+        "mean": 427255088858.93,
+        "median": 417537057664.95
+      },
+      "sector": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "categorical",
+        "unique_values": 1,
+        "sample_values": [
+          "Technology"
+        ]
+      },
+      "shares_outstanding": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 6863737376.4,
+        "max": 6863737376.4,
+        "mean": 6863737376.4,
+        "median": 6863737376.4
+      },
+      "stock_price": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 264.65,
+        "max": 476.86,
+        "mean": 353.14,
+        "median": 331.21
+      },
+      "tax_provision": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 15592118787.13,
+        "max": 28048548884.29,
+        "mean": 21103621372.24,
+        "median": 20276898934.55
+      },
+      "ticker": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "categorical",
+        "unique_values": 1,
+        "sample_values": [
+          "SYNTH"
+        ]
+      },
+      "total_assets": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 570484733109.72,
+        "max": 1295727592443.04,
+        "mean": 1013464688255.93,
+        "median": 1147816592443.05
+      },
+      "total_debt": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 77394633489.13,
+        "max": 212868639985.77,
+        "mean": 161924400795.65,
+        "median": 169927058389.26
+      },
+      "total_equity": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 397065700257.15,
+        "max": 901845315003.3,
+        "mean": 705386214166.83,
+        "median": 798897100297.2
+      },
+      "total_liabilities": {
+        "null_count": 0,
+        "null_pct": 0.0,
+        "non_null_count": 5,
+        "type": "numeric",
+        "min": 173419032852.57,
+        "max": 393882277439.74,
+        "mean": 308078474089.11,
+        "median": 348919492145.85
+      }
+    }
+  },
+  "peer_profiles": [
+    {
+      "label": "Synthetic PEER1 Corp (PEER1)",
+      "row_count": 5,
+      "years_covered": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2021\u20132025",
+      "year_count": 5,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 0.86,
+          "max": 1.76,
+          "mean": 1.33,
+          "median": 1.34
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 9704692139.49,
+          "max": 20612727007.46,
+          "mean": 16930547374.8,
+          "median": 17219920541.12
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 17205547965.81,
+          "max": 49783688656.94,
+          "mean": 28170346821.31,
+          "median": 26294014882.16
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Synthetic PEER1 Corp"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 83227991548.71,
+          "max": 138328585882.92,
+          "mean": 110962871800.82,
+          "median": 110331744476.62
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 8765538622.57,
+          "max": 25165149965.95,
+          "mean": 15622982979.78,
+          "median": 10143259605.04
+        },
+        "dividends_paid": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 1363606073.85,
+          "max": 13676055530.76,
+          "mean": 5941399929.67,
+          "median": 3731757172.68
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 60875349191.88,
+          "max": 98853162794.99,
+          "mean": 78787753843.63,
+          "median": 73328862782.8
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 2021.0,
+          "max": 2025.0,
+          "mean": 2023.0,
+          "median": 2023.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 582912456.32,
+          "max": 744054237.94,
+          "mean": 681172622.65,
+          "median": 714680837.22
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 38893534771.25,
+          "max": 61711025942.27,
+          "mean": 49090729719.09,
+          "median": 46611833334.14
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 48678018263.04,
+          "max": 87984546693.94,
+          "mean": 63439566385.5,
+          "median": 57070328115.19
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 50732089586.85,
+          "max": 73688012829.04,
+          "mean": 63164770863.85,
+          "median": 63862203985.69
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 225027700174.8,
+          "max": 352875165862.91,
+          "mean": 284322884742.07,
+          "median": 276623196503.26
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 11866524032.04,
+          "max": 11866524032.04,
+          "mean": 11866524032.04,
+          "median": 11866524032.04
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 216.08,
+          "max": 411.8,
+          "mean": 280.73,
+          "median": 248.22
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 10338787724.0,
+          "max": 16404196769.46,
+          "mean": 13049434482.29,
+          "median": 12390487341.99
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "PEER1"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 572578609145.11,
+          "max": 804911289367.94,
+          "mean": 667626537280.67,
+          "median": 648319754922.5
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 90961487133.98,
+          "max": 127349928157.97,
+          "mean": 109303772220.32,
+          "median": 109444279493.66
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 402189888921.3,
+          "max": 565384694593.7,
+          "mean": 468953325501.85,
+          "median": 455391881661.59
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 170388720223.8,
+          "max": 239526594774.23,
+          "mean": 198673211778.81,
+          "median": 192927873260.91
+        }
+      }
+    },
+    {
+      "label": "Synthetic PEER2 Corp (PEER2)",
+      "row_count": 5,
+      "years_covered": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2021\u20132025",
+      "year_count": 5,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 0.95,
+          "max": 1.79,
+          "mean": 1.24,
+          "median": 1.14
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 7483074050.76,
+          "max": 11599173375.87,
+          "mean": 9660035333.19,
+          "median": 9862211773.17
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 16967675219.47,
+          "max": 35934006836.38,
+          "mean": 25039231809.01,
+          "median": 23862228162.13
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Synthetic PEER2 Corp"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 37024430842.33,
+          "max": 63956328035.72,
+          "mean": 50232972872.23,
+          "median": 49209333016.11
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 4968335722.42,
+          "max": 11750361444.72,
+          "mean": 8945552907.55,
+          "median": 10427614908.73
+        },
+        "dividends_paid": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 339942605.35,
+          "max": 5331931822.14,
+          "mean": 2091449927.46,
+          "median": 1335446120.57
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 31297788885.18,
+          "max": 57534327924.43,
+          "mean": 43936933480.63,
+          "median": 45740258230.43
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 2021.0,
+          "max": 2025.0,
+          "mean": 2023.0,
+          "median": 2023.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 165551413.18,
+          "max": 380765404.03,
+          "mean": 277914606.96,
+          "median": 258272783.86
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 18923286404.9,
+          "max": 31804758131.61,
+          "mean": 24166986858.17,
+          "median": 23201342915.81
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 22371370830.32,
+          "max": 39424743955.47,
+          "mean": 31063568712.21,
+          "median": 32434017848.16
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 26329453162.77,
+          "max": 45783966479.71,
+          "mean": 34991380573.08,
+          "median": 35312643321.7
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 116087344616.41,
+          "max": 190447300492.37,
+          "mean": 151852250247.73,
+          "median": 151409587351.96
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 10061628203.03,
+          "max": 10061628203.03,
+          "mean": 10061628203.03,
+          "median": 10061628203.03
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 231.75,
+          "max": 553.63,
+          "mean": 340.87,
+          "median": 319.31
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 5030240689.91,
+          "max": 8454429376.76,
+          "mean": 6424135747.11,
+          "median": 6167445585.22
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "PEER2"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 258327850611.28,
+          "max": 549861853991.14,
+          "mean": 395645938798.67,
+          "median": 404239634172.72
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 38322464216.01,
+          "max": 52622780238.94,
+          "mean": 43884936950.9,
+          "median": 43668742584.66
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 197652996398.09,
+          "max": 420712837540.29,
+          "mean": 302718445306.02,
+          "median": 309293693142.41
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 60674854213.19,
+          "max": 129149016450.85,
+          "mean": 92927493492.66,
+          "median": 94945941030.31
+        }
+      }
+    },
+    {
+      "label": "Synthetic PEER3 Corp (PEER3)",
+      "row_count": 5,
+      "years_covered": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2021\u20132025",
+      "year_count": 5,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 0.75,
+          "max": 1.29,
+          "mean": 0.94,
+          "median": 0.77
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 18315671738.44,
+          "max": 36798643687.1,
+          "mean": 26528927794.74,
+          "median": 24242279448.77
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 26687902254.9,
+          "max": 120762689980.36,
+          "mean": 64559296727.57,
+          "median": 52587315672.62
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Synthetic PEER3 Corp"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 144434492117.51,
+          "max": 196574234402.59,
+          "mean": 168751766772.61,
+          "median": 167792965928.59
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 15411343941.36,
+          "max": 34425108575.93,
+          "mean": 22207416717.6,
+          "median": 17766887094.79
+        },
+        "dividends_paid": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 1427581547.9,
+          "max": 25899875618.56,
+          "mean": 15496005488.93,
+          "median": 17478164784.72
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 118765920198.8,
+          "max": 176249567663.03,
+          "mean": 150427999731.77,
+          "median": 148594144530.93
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 2021.0,
+          "max": 2025.0,
+          "mean": 2023.0,
+          "median": 2023.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 613329786.08,
+          "max": 1255375164.47,
+          "mean": 877130381.06,
+          "median": 850390113.7
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 60208898575.84,
+          "max": 88760857086.26,
+          "mean": 74601843099.15,
+          "median": 76493197348.71
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 66425990918.54,
+          "max": 135111499816.64,
+          "mean": 102022874907.64,
+          "median": 119850672810.64
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 102930643799.66,
+          "max": 141824459087.1,
+          "mean": 128220583014.17,
+          "median": 130827257436.14
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 373544172532.08,
+          "max": 542801772328.6,
+          "mean": 454221800529.11,
+          "median": 454687735166.64
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 12163233276.39,
+          "max": 12163233276.39,
+          "mean": 12163233276.39,
+          "median": 12163233276.39
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 166.85,
+          "max": 234.57,
+          "mean": 201.33,
+          "median": 207.19
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 16004897089.78,
+          "max": 23594658212.8,
+          "mean": 19830869684.59,
+          "median": 20333634738.27
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "PEER3"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 925603812045.52,
+          "max": 1358004914950.09,
+          "mean": 1154418142999.39,
+          "median": 1178511562092.04
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 122870823312.08,
+          "max": 245618688329.3,
+          "mean": 180423882640.28,
+          "median": 164778799465.09
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 676032436234.79,
+          "max": 991844846710.06,
+          "mean": 843151356432.77,
+          "median": 860748445591.72
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 249571375810.73,
+          "max": 366160068240.03,
+          "mean": 311266786566.62,
+          "median": 317763116500.32
+        }
+      }
+    },
+    {
+      "label": "Synthetic PEER4 Corp (PEER4)",
+      "row_count": 5,
+      "years_covered": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "year_range": "2021\u20132025",
+      "year_count": 5,
+      "columns": {
+        "beta": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 0.71,
+          "max": 1.55,
+          "mean": 1.14,
+          "median": 1.31
+        },
+        "capex": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 16259492104.64,
+          "max": 26224457328.81,
+          "mean": 20079681407.9,
+          "median": 19783220497.89
+        },
+        "cash_and_equivalents": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 32993647464.26,
+          "max": 82871830877.9,
+          "mean": 54883251598.56,
+          "median": 52128031470.1
+        },
+        "company_name": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Synthetic PEER4 Corp"
+          ]
+        },
+        "cost_of_revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 83026688502.57,
+          "max": 140807015630.84,
+          "mean": 112418642582.92,
+          "median": 120346210550.96
+        },
+        "depreciation": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 12623563014.17,
+          "max": 32905660124.03,
+          "mean": 18765787996.62,
+          "median": 15132112303.78
+        },
+        "dividends_paid": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 1986581365.01,
+          "max": 20163727747.05,
+          "mean": 13069115696.23,
+          "median": 13884984279.52
+        },
+        "ebitda": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 96501192590.66,
+          "max": 166188618719.78,
+          "mean": 121211871187.35,
+          "median": 113777843785.76
+        },
+        "fiscal_year": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 2021.0,
+          "max": 2025.0,
+          "mean": 2023.0,
+          "median": 2023.0
+        },
+        "interest_expense": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 1159965515.46,
+          "max": 3078259473.86,
+          "mean": 2110183347.17,
+          "median": 2140972207.79
+        },
+        "net_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 52225819818.11,
+          "max": 85692535197.61,
+          "mean": 67568186140.27,
+          "median": 66423818778.22
+        },
+        "operating_cash_flow": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 61931548862.29,
+          "max": 116736540979.89,
+          "mean": 83953928890.62,
+          "median": 72762556946.43
+        },
+        "operating_income": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 77893339003.54,
+          "max": 133282958595.75,
+          "mean": 102446083190.73,
+          "median": 101154280771.59
+        },
+        "revenue": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 275868621455.1,
+          "max": 453704186205.25,
+          "mean": 358039537714.76,
+          "median": 350784323973.44
+        },
+        "sector": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "Technology"
+          ]
+        },
+        "shares_outstanding": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 4804708881.28,
+          "max": 4804708881.28,
+          "mean": 4804708881.28,
+          "median": 4804708881.28
+        },
+        "stock_price": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 287.21,
+          "max": 531.64,
+          "mean": 390.58,
+          "median": 408.08
+        },
+        "tax_provision": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 13882812863.04,
+          "max": 22779028343.67,
+          "mean": 17961163404.38,
+          "median": 17656964485.35
+        },
+        "ticker": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "categorical",
+          "unique_values": 1,
+          "sample_values": [
+            "PEER4"
+          ]
+        },
+        "total_assets": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 717903877587.62,
+          "max": 1169032514957.66,
+          "mean": 863223889035.06,
+          "median": 815875179594.88
+        },
+        "total_debt": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 151850587982.59,
+          "max": 367837619834.61,
+          "mean": 231168373829.63,
+          "median": 209022638921.3
+        },
+        "total_equity": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 388310775868.96,
+          "max": 632324099466.71,
+          "mean": 466913675443.85,
+          "median": 441302984830.38
+        },
+        "total_liabilities": {
+          "null_count": 0,
+          "null_pct": 0.0,
+          "non_null_count": 5,
+          "type": "numeric",
+          "min": 329593101718.66,
+          "max": 536708415490.95,
+          "mean": 396310213591.21,
+          "median": 374572194764.51
+        }
+      }
+    }
+  ],
+  "issues": [],
+  "error_count": 0,
+  "warning_count": 0
+}
